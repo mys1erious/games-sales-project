@@ -36,6 +36,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'accounts',
     'games',
+    'sales',
 
     'rest_framework',
     'corsheaders',
