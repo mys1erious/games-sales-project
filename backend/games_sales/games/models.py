@@ -2,28 +2,41 @@ from django.db import models
 
 
 class Rating(models.Model):
-    critic_score = models.FloatField()
-    critic_count = models.FloatField()
-    user_score = models.FloatField()
-    user_count = models.FloatField()
-
-
-class SaleInfo(models.Model):
-    NA_sales = models.FloatField()
-    EU_sales = models.FloatField()
-    JP_sales = models.FloatField()
-    other_sales = models.FloatField()
-    global_sales = models.FloatField()
+    critic_score = models.FloatField(
+        help_text='Aggregate score compiled by Metacritic staff',
+        blank=True)
+    critic_count = models.FloatField(
+        help_text='The number of critics used in coming up with the Critic_score',
+        blank=True)
+    user_score = models.FloatField(
+        help_text='Score by Metacritic`s subscribers',
+        blank=True)
+    user_count = models.FloatField(
+        help_text='Number of users who gave the user_score',
+        blank=True)
 
 
 class Game(models.Model):
+    class ESRBRatings(models.TextChoices):
+        KA = 'K-A', 'Kids to Adults, 6+'
+        M = 'M', 'Mature, 17+'
+        RP = 'RP', 'Rating Pending'
+        E = 'E', 'Everyone'
+        AO = 'AO', 'Adults Only, 18+'
+        E10PLUS = 'E10+', 'Everyone 10+'
+        EC = 'EC', 'Early Childhood, 3+'
+        T = 'T', 'Teen, 13+'
+
     name = models.CharField(max_length=120, unique=True)
     platform = models.CharField(max_length=30, blank=True)
     publisher = models.CharField(max_length=30, blank=True)
     developer = models.CharField(max_length=30, blank=True)
     genre = models.CharField(max_length=30, blank=True)
     year_of_release = models.IntegerField(blank=True)
-    esrb_rating = models.CharField(max_length=1, blank=True)
-    game_rating = models.ForeignKey(Rating, null=True, blank=True, on_delete=models.CASCADE)
-    sale_info = models.ForeignKey(SaleInfo, null=True, blank=True, on_delete=models.CASCADE)
+    # rating = models.OneToOneField(Rating, on_delete=models.CASCADE)
 
+    esrb_rating = models.CharField(
+        max_length=4,
+        blank=True,
+        choices=ESRBRatings.choices
+    )
