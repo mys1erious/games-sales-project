@@ -32,11 +32,15 @@ class Game(models.Model):
     publisher = models.CharField(max_length=30, blank=True)
     developer = models.CharField(max_length=30, blank=True)
     genre = models.CharField(max_length=30, blank=True)
-    year_of_release = models.IntegerField(blank=True)
+    year_of_release = models.IntegerField(null=True, blank=True)
     # rating = models.OneToOneField(Rating, on_delete=models.CASCADE)
 
+    #  Later restrict to only Choices
     esrb_rating = models.CharField(
         max_length=4,
         blank=True,
         choices=ESRBRatings.choices
     )
+
+    def __str__(self):
+        return f'{self.name}, {self.esrb_rating}'
