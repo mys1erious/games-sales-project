@@ -1,3 +1,5 @@
+import uuid as uuid_lib
+
 from django.db import models
 
 
@@ -27,36 +29,44 @@ class Game(models.Model):
         EC = 'EC', 'Early Childhood, 3+'
         T = 'T', 'Teen, 13+'
 
+    uuid = models.UUIDField(
+        db_index=True,
+        default=uuid_lib.uuid4,
+        editable=False
+    )
     name = models.CharField(
         max_length=120,
         unique=True
     )
     platform = models.CharField(
         max_length=30,
-        null=True, blank=True
+        blank=True
     )
     publisher = models.CharField(
         max_length=30,
-        null=True, blank=True
+        blank=True
     )
     developer = models.CharField(
         max_length=30,
-        null=True, blank=True
+        blank=True
     )
     genre = models.CharField(
         max_length=30,
-        null=True, blank=True
+        blank=True
     )
     year_of_release = models.IntegerField(
         null=True, blank=True
     )
-    # rating = models.OneToOneField(Rating, on_delete=models.CASCADE)
+    rating = models.OneToOneField(
+        Rating,
+        on_delete=models.CASCADE,
+        null=True
+    )
 
     #  Later restrict to only Choices
     esrb_rating = models.CharField(
         max_length=4,
         blank=True,
-        null=True,
         choices=ESRBRatings.choices
     )
 
