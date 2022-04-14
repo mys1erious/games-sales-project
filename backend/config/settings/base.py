@@ -7,8 +7,6 @@ from django.core.exceptions import ImproperlyConfigured
 
 
 load_dotenv()
-
-
 def get_env_variable(var_name):
     try:
         return os.getenv(var_name)
@@ -28,12 +26,13 @@ SECRET_KEY = get_env_variable('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+
 ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = [
+    'core',
     'accounts',
     'games',
     'sales',
@@ -128,10 +127,17 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 AUTH_USER_MODEL = 'accounts.Account'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAdminUser',
+    )
+}
