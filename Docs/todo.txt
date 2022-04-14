@@ -1,7 +1,7 @@
--- Daily:
-1. HomePage frontend
-2. SalesPage frontend (For just display a list of games)
-3. Finish with APIs
+-- Daily(15.4):
+1. Finish Sales app
+2. Finish Accounts app
+3. Make basic authentication and authorization in backend and frontend
 
 
 
