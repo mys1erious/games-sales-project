@@ -8,18 +8,18 @@ const Header = () => {
 
     let navigate = useNavigate();
 
-    let logoOnClick = () => {
-        navigate('/')
-        console.log("Clicked on Logo")
-    }
-
     return(
         <div className="header">
-            <Logo className="logo" onClick={logoOnClick}/>
-            <span onClick={() => navigate('/')}>Home</span>
-            <span onClick={() => navigate('/sales/')}>Sales</span>
-            <span onClick={() => navigate('/reports/')}>Reports</span>
-            <span onClick={() => navigate('/profile/')}>Profile</span>
+            <span className="header-panel">
+                <Logo className="logo" onClick={() => navigate('/')}/>
+                <span className="h_btn" onClick={() => navigate('/')}>Home</span>
+                <span className="h_btn" onClick={() => navigate('/sales/')}>Sales</span>
+                <span className="h_btn" onClick={() => navigate('/reports/')}>Reports</span>
+                <span className="h_btn" onClick={() => navigate('/profile/')}>Profile</span>
+            </span>
+            <span className="header-panel">
+                <span className="h_btn" onClick={() => navigate('/signin/')}>Sign In</span>
+            </span>
         </div>
     )
 }

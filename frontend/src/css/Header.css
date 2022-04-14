@@ -1,10 +1,19 @@
 .header {
+    height: 8vh;
     padding: 10px;
+    background: gray;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-panel {
+    ;
     display: flex;
     flex-direction: row;
     justify-content: start;
     align-items: center;
-    background: gray;
 }
 
 .logo {
@@ -19,11 +28,11 @@
 
 
 /* Change spans to components */
-span {
+.h_btn {
     margin-left: 10px;
 }
 
-span:hover {
+.h_btn:hover {
     transform: scale(1.1);
     cursor: pointer;
 }

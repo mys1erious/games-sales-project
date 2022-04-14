@@ -1,3 +1,11 @@
+-- Daily:
+1. HomePage frontend
+2. SalesPage frontend (For just display a list of games)
+3. Finish with APIs
+
+
+
+-- Overall:
 1. User profile frontend
 2. Users backend
 	Login/Registration frontend

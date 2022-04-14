@@ -18,6 +18,10 @@ body{
   font-weight: 400;
   font-size: 16px;
 }
+.body-container {
+  min-height: 84vh;
+  padding: 10px 20px 10px 20px;
+}
 
 a {
   text-decoration: none;
