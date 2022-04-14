@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from rest_framework.response import Response
 
 from ..models import Game, Rating
 
@@ -12,8 +11,6 @@ class RatingSerializer(serializers.ModelSerializer):
 
 class GameSerializer(serializers.ModelSerializer):
     rating = RatingSerializer(many=False)
-
-    # REWORK TO CREATE WITH RATINGS
 
     def create(self, validated_data):
         rating_data = validated_data.pop('rating')
@@ -29,18 +26,19 @@ class GameSerializer(serializers.ModelSerializer):
         ]
 
 
+# Just instance sample
 # {
-#         "name": "name_test6",
-#         "platform": "",
-#         "publisher": "",
-#         "developer": "",
-#         "genre": "",
-#         "year_of_release": null,
-#         "esrb_rating": "",
-#         "rating": {
-#             "critic_score": 1.0,
-#             "critic_count": 2.0,
-#             "user_score": 4.0,
-#             "user_count": 10.0
-#         }
+#     "name": "name_test6",
+#     "platform": "",
+#     "publisher": "",
+#     "developer": "",
+#     "genre": "",
+#     "year_of_release": null,
+#     "esrb_rating": "",
+#     "rating": {
+#         "critic_score": 1.0,
+#         "critic_count": 2.0,
+#         "user_score": 4.0,
+#         "user_count": 10.0
 #     }
+# }

@@ -1,10 +1,7 @@
 from django.shortcuts import get_object_or_404
 
 from rest_framework.views import APIView
-from rest_framework.generics import (
-    ListCreateAPIView,
-    RetrieveUpdateDestroyAPIView
-)
+from rest_framework.generics import ListCreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
@@ -12,29 +9,13 @@ from rest_framework import status
 from ..models import Game, Rating
 from .serializers import (
     GameSerializer,
-    # GameGetSerializer,
-    # GamePostPutSerializer,
     RatingSerializer
 )
 
 
-# class GameListCreateAPIView(ListCreateAPIView):
-#     queryset = Game.objects.all()
-#     permission_classes = (IsAuthenticated, )
-#     serializer_class = GameGetSerializer
-#     lookup_field = 'uuid'
-#
-#
-# class GameRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
-#     queryset = Game.objects.all()
-#     permission_classes = (IsAuthenticated, )
-#     serializer_class = GameGetSerializer
-#     lookup_field = 'uuid'
-
-
 class RatingListCreateAPIView(ListCreateAPIView):
     queryset = Rating.objects.all()
-    permission_classes = (IsAuthenticated, )
+    # permission_classes = (IsAuthenticated, )
     serializer_class = RatingSerializer
 
 
@@ -55,9 +36,18 @@ class GameListAPIView(APIView):
 
 
 class GameDetailAPIView(APIView):
-    def put(self, request, *args, **kwargs):
-        game = get_object_or_404(Game, uuid=request.data['uuid'])
-        return Response(GameSerializer(game).data)
+    permission_classes = (IsAuthenticated, )
 
-    def delete(self):
-        ...
+    def put(self, request, uuid, format=None):
+        game = get_object_or_404(Game, uuid=uuid)
+        serializer = GameSerializer(game, data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, uuid, format=None):
+        game = get_object_or_404(Game, uuid=uuid)
+        game.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
