@@ -1,7 +1,7 @@
 import uuid as uuid_lib
-
 from django.db import models
 from games.models import Game
+from core.models import TimeStampedModel
 
 
 # !!! Now scalable, rework for different types of products !!!
@@ -14,7 +14,7 @@ class SaleManager(models.Manager):
         return super().create(**obj_data)
 
 
-class Sale(models.Model):
+class Sale(TimeStampedModel):
     uuid = models.UUIDField(
         db_index=True,
         unique=True,
