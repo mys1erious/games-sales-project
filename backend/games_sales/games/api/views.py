@@ -20,8 +20,6 @@ class RatingListCreateAPIView(ListCreateAPIView):
 
 
 class GameListAPIView(APIView):
-    permission_classes = (IsAuthenticated, )
-
     def get(self, request, *args, **kwargs):
         games = Game.objects.all()
         serializer = GameSerializer(games, many=True)
@@ -36,8 +34,6 @@ class GameListAPIView(APIView):
 
 
 class GameDetailAPIView(APIView):
-    permission_classes = (IsAuthenticated, )
-
     def put(self, request, uuid, format=None):
         game = get_object_or_404(Game, uuid=uuid)
         serializer = GameSerializer(game, data=request.data)
