@@ -13,9 +13,7 @@ class GameSerializer(serializers.ModelSerializer):
     rating = RatingSerializer(many=False)
 
     def create(self, validated_data):
-        rating_data = validated_data.pop('rating')
-        rating_instance = Rating.objects.create(**rating_data)
-        game_instance = Game.objects.create(**validated_data, rating=rating_instance)
+        game_instance = Game.objects.create(**validated_data)
         return game_instance
 
     class Meta:

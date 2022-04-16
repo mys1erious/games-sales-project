@@ -18,6 +18,15 @@ class Rating(models.Model):
         null=True, blank=True)
 
 
+class GameManager(models.Manager):
+    def create(self, **obj_data):
+        rating_data = obj_data.pop('rating')
+        rating_instance = Rating.objects.create(**rating_data)
+        obj_data['rating'] = rating_instance
+
+        return super().create(**obj_data)
+
+
 class Game(models.Model):
     class ESRBRatings(models.TextChoices):
         KA = 'K-A', 'Kids to Adults, 6+'
@@ -71,5 +80,12 @@ class Game(models.Model):
         choices=ESRBRatings.choices
     )
 
+    objects = GameManager()
+
+    def delete(self, using=None, keep_parents=False):
+        if self.rating:
+            self.rating.delete()
+        super().delete(using)
+
     def __str__(self):
-        return f'{self.name}, {self.esrb_rating}'
+        return f'{self.name}'
