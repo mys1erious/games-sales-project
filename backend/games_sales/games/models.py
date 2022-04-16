@@ -31,6 +31,7 @@ class Game(models.Model):
 
     uuid = models.UUIDField(
         db_index=True,
+        unique=True,
         default=uuid_lib.uuid4,
         editable=False
     )
