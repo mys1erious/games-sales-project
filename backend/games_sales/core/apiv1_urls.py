@@ -18,6 +18,12 @@ urlpatterns = [
         view=game_views.GameDetailAPIView.as_view(),
         name='games'
     ),
+    # {% url 'api:games' ratings %}
+    path(
+        route='games/ratings/',
+        view=game_views.RatingListCreateAPIView.as_view(),
+        name='games'
+    ),
 
     # {% url 'api:sales' %}
     path(
