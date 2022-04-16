@@ -1,0 +1,28 @@
+
+17.04.22:
+1. !!! FIX !!! When deleting Sale object not from the API Game and Rating object are not deleted!
+2. !!! FIX !!! Not all post requests have been successful, debug and fix!
+- Sales list
+- Search form
+- Data from the search form
+- Groupby
+- Charts
+- Modal ?
+- Results by field
+- Alerts
+- Report list
+- Detail page
+- Report list
+- Report detail
+- PDFs
+- Dropzone + favicon
+- My profile
+- Authentication
+- Protecting views?
+- Navbar?
+- Sale detail page
+--> After this add my own stuff that I want(mostly about data analysis and visualization)
+
+
+# Notes:
+1. Get ideas from the kaggle code section
