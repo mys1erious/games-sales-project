@@ -1,9 +1,17 @@
+import uuid as uuid_lib
+
 from django.db import models
 from games.models import Game
 
 
 class Sale(models.Model):
-    product = models.OneToOneField(
+    uuid = models.UUIDField(
+        db_index=True,
+        unique=True,
+        default=uuid_lib.uuid4,
+        editable=False
+    )
+    game = models.OneToOneField(
         Game, on_delete=models.CASCADE
     )
     NA_sales = models.FloatField(
