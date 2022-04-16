@@ -1,6 +1,7 @@
 16.04.22:
-1. Profile model + post_save signal?
-2. 
+1. 
+2. Profile model + post_save signal?
+3. 
 
 
 17.04.22:
