@@ -4,6 +4,16 @@ from django.db import models
 from games.models import Game
 
 
+# !!! Now scalable, rework for different types of products !!!
+class SaleManager(models.Manager):
+    def create(self, **obj_data):
+        game_data = obj_data.pop('game')
+        game_instance = Game.objects.create(**game_data)
+        obj_data['game'] = game_instance
+
+        return super().create(**obj_data)
+
+
 class Sale(models.Model):
     uuid = models.UUIDField(
         db_index=True,
@@ -35,3 +45,13 @@ class Sale(models.Model):
         help_text='Total sales in the world (in millions of units)',
         blank=True
     )
+
+    objects = SaleManager()
+
+    def delete(self, using=None, keep_parents=False):
+        if self.game:
+            self.game.delete()
+        super().delete(using)
+
+    def __str__(self):
+        return f'{self.game}'
