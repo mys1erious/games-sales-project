@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "../css/SalesPage.css";
+import ListItem from "../components/ListItem";
+import axios from "axios";
 
 
-const EMAIL = 'admin@gmail.com'
+const EMAIL = 'admin@gmail.com';
 const PASSWORD = 'admin'
+
 
 const SalesPage = () => {
 
@@ -14,13 +17,12 @@ const SalesPage = () => {
     }, []);
 
     let getSales = async () => {
-        let response = await fetch('/api/v1/sales/', {
-            method: 'GET',
+        let response = await axios.get(`${process.env.REACT_APP_BASE_API_URL}/api/v1/sales/`, {
             headers: {
-                'Authorization': 'Basic' + btoa(`${EMAIL}:${PASSWORD}`)
+                'Authorization': 'Basic ' + btoa(`${EMAIL}:${PASSWORD}`)
             }
         });
-        let data = await response.json();
+        let data = await response.data;
 
         setSales(data);
     }
@@ -29,9 +31,11 @@ const SalesPage = () => {
         <div>
             <h1>SalesList</h1>
             <div>
-                {sales.map((sale, index) => (
-                    <div key={index}>{sale.game.name}</div>
+                <ul>
+                    {sales.map((sale, index) => (
+                    <ListItem key={index} sale={sale} />
                 ))}
+                </ul>
             </div>
         </div>
     );
