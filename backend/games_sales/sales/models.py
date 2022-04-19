@@ -26,32 +26,32 @@ class Sale(TimeStampedModel):
     )
     NA_sales = models.FloatField(
         help_text='Game sales in North America (in millions of units)',
-        blank=True
+        null=True, blank=True
     )
     EU_sales = models.FloatField(
         help_text='Game sales in the European Union (in millions of units)',
-        blank=True
+        null=True, blank=True
     )
     JP_sales = models.FloatField(
         help_text='Game sales in Japan (in millions of units)',
-        blank=True
+        null=True, blank=True
     )
     other_sales = models.FloatField(
         help_text='Game sales in the rest of the world, i.e. Africa, Asia'
                   'excluding Japan, Australia, Europe excluding the E.U. and',
-        blank=True
+        null=True, blank=True
     )
     global_sales = models.FloatField(
         help_text='Total sales in the world (in millions of units)',
-        blank=True
+        null=True, blank=True
     )
 
     objects = SaleManager()
 
-    def delete(self, using=None, keep_parents=False):
-        if self.game:
-            self.game.delete()
-        super().delete(using)
+    # def delete(self, using=None, keep_parents=False):
+    #     if self.game:
+    #         self.game.delete()
+    #     super().delete(using)
 
     def __str__(self):
         return f'{self.game}'

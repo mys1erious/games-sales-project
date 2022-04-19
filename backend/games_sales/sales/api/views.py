@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, generics
 
 from ..models import Sale
 from .serializers import SaleSerializer
@@ -15,7 +15,7 @@ class SaleListAPIView(APIView):
     def get(self, request, *args, **kwargs):
         sales = Sale.objects.all()
         serializer = SaleSerializer(sales, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request, *args, **kwargs):
         serializer = SaleSerializer(data=request.data)
@@ -27,6 +27,11 @@ class SaleListAPIView(APIView):
 
 class SaleDetailAPIView(APIView):
     permission_classes = (IsAuthenticated, )
+
+    def get(self, request, uuid, format=None):
+        sale = get_object_or_404(Sale, uuid=uuid)
+        serializer = SaleSerializer(sale, many=False)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, uuid, format=None):
         sale = get_object_or_404(Sale, uuid=uuid)
@@ -41,3 +46,17 @@ class SaleDetailAPIView(APIView):
         sale = get_object_or_404(Sale, uuid=uuid)
         sale.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+# Finish this <!>!>!>!
+class SearchSales(generics.ListAPIView):
+    serializer_class = SaleSerializer
+    model = Sale
+    paginate_by = 3
+
+    def get_queryset(self):
+        query = self.kwargs.get('q')
+        if query:
+            return self.model.objects.filter(
+
+            )
