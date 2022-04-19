@@ -1,9 +1,7 @@
 
 17.04.22:
-1. !!! FIX !!! When deleting Sale object not from the API Game and Rating object are not deleted!
-2. !!! FIX !!! Not all post requests have been successful, debug and fix!
-- Sales list
-- Search form
+1. Finish with Search
+2. Make a component to display Sale object and find a way to not hardcode its attires
 - Data from the search form
 - Groupby
 - Charts
