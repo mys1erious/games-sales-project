@@ -67,9 +67,11 @@ if __name__ == '__main__':
         samples = data['samples']
 
         # for i in range(8):
-        #     sales_post_request(samples[i])
+        #     r = sales_post_request(samples[i])
+        #     print(r)
 
         response = sales_get_request()
+
         for obj in response:
             print(json.dumps(obj, indent=2))
         print(len(response))
