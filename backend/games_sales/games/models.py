@@ -50,42 +50,37 @@ class Game(models.Model):
     )
     platform = models.CharField(
         max_length=30,
-        blank=True
+        null=True, blank=True
     )
     publisher = models.CharField(
         max_length=30,
-        blank=True
+        null=True, blank=True
     )
     developer = models.CharField(
         max_length=30,
-        blank=True
+        null=True, blank=True
     )
     genre = models.CharField(
         max_length=30,
-        blank=True
+        null=True, blank=True
     )
     year_of_release = models.IntegerField(
         null=True, blank=True
     )
     rating = models.OneToOneField(
         Rating,
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
         null=True
     )
 
     #  Later restrict to only Choices
     esrb_rating = models.CharField(
         max_length=4,
-        blank=True,
+        null=True, blank=True,
         choices=ESRBRatings.choices
     )
 
     objects = GameManager()
-
-    def delete(self, using=None, keep_parents=False):
-        if self.rating:
-            self.rating.delete()
-        super().delete(using)
 
     def __str__(self):
         return f'{self.name}'
