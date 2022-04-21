@@ -19,6 +19,8 @@ const Header = () => {
             </span>
             <span className="header-panel">
                 <span className="h_btn" onClick={() => navigate('/signin/')}>Sign In</span>
+                <span className="h_btn" onClick={() => navigate('/signup/')}>Sign Up</span>
+                <span className="h_btn" onClick={() => navigate('/sign-out/')}>Sign Out</span>
             </span>
         </div>
     )

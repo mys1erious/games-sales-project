@@ -36,7 +36,7 @@ const SaleDetailPage = () => {
 
     // try Recursive function to get data
     return(
-        <div>
+        <React.Fragment>
             <button onClick={() => navigate(-1)}>Back</button>
             <h3>Sale info:</h3>
             <pre>
@@ -48,7 +48,7 @@ const SaleDetailPage = () => {
                 <code>{JSON.stringify(sale, null, 4)}</code>
                 <code>{JSON.stringify(sale, null, 4)}</code>
             </pre>
-        </div>
+        </React.Fragment>
     )
 }
 

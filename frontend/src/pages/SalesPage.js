@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../css/SalesPage.css";
 import ListItem from "../components/ListItem";
-import axios from "axios";
-
-
-const EMAIL = 'admin@gmail.com';
-const PASSWORD = 'admin'
+import axiosInstance from "../axios";
 
 
 const SalesPage = () => {
@@ -17,18 +13,13 @@ const SalesPage = () => {
     }, []);
 
     let getSales = async () => {
-        let response = await axios.get(`${process.env.REACT_APP_BASE_API_URL}/api/v1/sales/`, {
-            headers: {
-                'Authorization': 'Basic ' + btoa(`${EMAIL}:${PASSWORD}`)
-            }
-        });
+        let response = await axiosInstance.get('/sales');
         let data = await response.data;
-
         setSales(data);
     }
 
     return(
-        <div>
+        <React.Fragment>
             <h1>SalesList</h1>
             <div>
                 <ul>
@@ -37,7 +28,7 @@ const SalesPage = () => {
                 ))}
                 </ul>
             </div>
-        </div>
+        </React.Fragment>
     );
 }
 

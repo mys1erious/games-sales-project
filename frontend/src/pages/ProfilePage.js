@@ -3,7 +3,9 @@ import React from "react";
 
 const ProfilePage = () => {
     return(
-        <div>ProfilePage</div>
+        <React.Fragment>
+            ProfilePage
+        </React.Fragment>
     )
 }
 

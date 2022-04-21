@@ -4,7 +4,9 @@ import "../css/HomePage.css";
 
 const HomePage = () => {
     return(
-        <div className="container">Home Page</div>
+        <React.Fragment>
+            Home Page
+        </React.Fragment>
     )
 }
 

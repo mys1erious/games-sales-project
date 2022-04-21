@@ -11,10 +11,12 @@ import Footer from "./components/Footer";
 
 import HomePage from "./pages/HomePage";
 import SalesPage from "./pages/SalesPage";
+import SaleDetailPage from "./pages/SaleDetailPage";
 import ReportsPage from "./pages/ReportsPage";
 import ProfilePage from "./pages/ProfilePage";
 import SignInPage from "./pages/SignInPage";
-import SaleDetailPage from "./pages/SaleDetailPage";
+import SignUpPage from "./pages/SignUpPage";
+import SIgnOutPage from "./pages/SIgnOutPage";
 
 
 
@@ -48,6 +50,8 @@ function App() {
                     <Route path="/reports/" exact element={<ReportsPage />} />
                     <Route path="/profile/" exact element={<ProfilePage />} />
                     <Route path="/signin/" exact element={<SignInPage />} />
+                    <Route path="/signup/" exact element={<SignUpPage />} />
+                    <Route path="/sign-out/" exact element={<SIgnOutPage />} />
                 </Routes>
             </div>
             <Footer />

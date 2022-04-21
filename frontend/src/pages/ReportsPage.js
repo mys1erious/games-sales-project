@@ -3,7 +3,9 @@ import React from "react";
 
 const ReportsPage = () => {
     return(
-        <div>ReportsPage</div>
+        <React.Fragment>
+            ReportsPage
+        </React.Fragment>
     )
 }
 
