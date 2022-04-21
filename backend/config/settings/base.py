@@ -1,6 +1,7 @@
 import os
 import sys
 from pathlib import Path
+from datetime import timedelta
 from dotenv import load_dotenv
 
 from django.core.exceptions import ImproperlyConfigured
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'reports',
 
     'rest_framework',
+    'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
 
     'django.contrib.admin',
@@ -140,7 +142,22 @@ AUTH_USER_MODEL = 'accounts.Account'
 
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAdminUser',
-    )
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAdminUser'
+    ],
+
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.UserRateThrottle'
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'user': '10000/day'
+    }
+}
+
+SIMPLE_JWT = {
+    'AUTH_HEADER_TYPES': ('Bearer', 'JWT'),
 }
