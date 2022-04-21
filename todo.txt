@@ -1,8 +1,7 @@
 
 17.04.22:
-1. Finish with Search
+1. Finish with the Search form (django-filters)
 2. Make a component to display Sale object and find a way to not hardcode its attires
-- Data from the search form
 - Groupby
 - Charts
 - Modal ?
@@ -15,7 +14,6 @@
 - PDFs
 - Dropzone + favicon
 - My profile
-- Authentication
 - Protecting views?
 - Navbar?
 - Sale detail page
