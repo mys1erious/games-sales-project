@@ -13,6 +13,9 @@ class SaleListAPIView(APIView):
     permission_classes = (IsAuthenticated, )
 
     def get(self, request, *args, **kwargs):
+        name = request.query_params.get('name', None)
+        # sales = Sale.objects.filter(game__name__startswith=name)
+
         sales = Sale.objects.all()
         serializer = SaleSerializer(sales, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -49,14 +52,14 @@ class SaleDetailAPIView(APIView):
 
 
 # Finish this <!>!>!>!
-class SearchSales(generics.ListAPIView):
-    serializer_class = SaleSerializer
-    model = Sale
-    paginate_by = 3
-
-    def get_queryset(self):
-        query = self.kwargs.get('q')
-        if query:
-            return self.model.objects.filter(
-
-            )
+# class SearchSales(generics.ListAPIView):
+#     serializer_class = SaleSerializer
+#     model = Sale
+#     paginate_by = 3
+#
+#     def get_queryset(self):
+#         query = self.kwargs.get('q')
+#         if query:
+#             return self.model.objects.filter(
+#
+#             )
