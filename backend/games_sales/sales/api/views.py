@@ -49,17 +49,3 @@ class SaleDetailAPIView(APIView):
         sale = get_object_or_404(Sale, uuid=uuid)
         sale.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-# Finish this <!>!>!>!
-# class SearchSales(generics.ListAPIView):
-#     serializer_class = SaleSerializer
-#     model = Sale
-#     paginate_by = 3
-#
-#     def get_queryset(self):
-#         query = self.kwargs.get('q')
-#         if query:
-#             return self.model.objects.filter(
-#
-#             )
