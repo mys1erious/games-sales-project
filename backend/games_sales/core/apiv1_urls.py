@@ -1,8 +1,13 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView
+)
 
+from accounts.api import views as account_views
 from games.api import views as game_views
 from sales.api import views as sale_views
-from accounts.api import views as account_views
+
 
 
 urlpatterns = [
@@ -22,8 +27,9 @@ urlpatterns = [
     path(
         route='games/ratings/',
         view=game_views.RatingListCreateAPIView.as_view(),
-        name='games'
+        name='game_ratings'
     ),
+
 
     # {% url 'api:sales' %}
     path(
@@ -36,6 +42,28 @@ urlpatterns = [
         route='sales/<uuid:uuid>/',
         view=sale_views.SaleDetailAPIView.as_view(),
         name='sales'
+    ),
+
+
+    path(
+        route='auth/signup/',
+        view=account_views.UserSignUpAPIView.as_view(),
+        name='account_signup'
+    ),
+    path(
+        route='auth/sign-out/blacklist/',
+        view=account_views.BlackListTokenAPIView.as_view(),
+        name='refresh_token_blacklist'
+    ),
+    path(
+        route='auth/token/',
+        view=TokenObtainPairView.as_view(),
+        name='token_obtain_pair'
+    ),
+    path(
+        route='auth/token/refresh/',
+        view=TokenRefreshView.as_view(),
+        name='token_refresh'
     )
 ]
 
