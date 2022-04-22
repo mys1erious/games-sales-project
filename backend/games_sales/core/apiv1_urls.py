@@ -1,13 +1,14 @@
 from django.urls import path, include
+from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView
 )
+from rest_framework.schemas import get_schema_view
 
 from accounts.api import views as account_views
 from games.api import views as game_views
 from sales.api import views as sale_views
-
 
 
 urlpatterns = [
@@ -64,30 +65,17 @@ urlpatterns = [
         route='auth/token/refresh/',
         view=TokenRefreshView.as_view(),
         name='token_refresh'
-    )
+    ),
+
+
+    path(
+        route='schema/',
+        view=get_schema_view(
+            permission_classes=[AllowAny],
+            title='GamesSalesAPI',
+            description='API for the GamesSalesAPI',
+            version='1.0.0'
+        ),
+        name='openapi-schema'
+    ),
 ]
-
-
-
-# {
-#     "game": {
-#             "name": "name_test7",
-#             "platform": "",
-#             "publisher": "",
-#             "developer": "",
-#             "genre": "",
-#             "year_of_release": null,
-#             "esrb_rating": "",
-#             "rating": {
-#                 "critic_score": 12.0,
-#                 "critic_count": 22.0,
-#                 "user_score": 42.0,
-#                 "user_count": 120.0
-#             }
-#     },
-#     "NA_sales": 11,
-#     "EU_sales": 12,
-#     "JP_sales": 13,
-#     "other_sales": 14,
-#     "global_sales": 15
-# }
