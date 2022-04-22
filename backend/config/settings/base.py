@@ -2,6 +2,8 @@ import os
 import sys
 from pathlib import Path
 from datetime import timedelta
+
+import rest_framework.schemas.coreapi
 from dotenv import load_dotenv
 
 from django.core.exceptions import ImproperlyConfigured
@@ -145,11 +147,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAdminUser'
     ],
-
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
-
     'DEFAULT_THROTTLE_CLASSES': [
         'rest_framework.throttling.UserRateThrottle'
     ],
