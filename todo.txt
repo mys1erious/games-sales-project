@@ -1,7 +1,9 @@
 
-17.04.22:
-1. Finish with the Search form (django-filters)
-2. Make a component to display Sale object and find a way to not hardcode its attires
+22.04.22:
+1. Finish in the evening with the Search form -> material-ui, rework for my project
+
+Overall:
+- Make a component to display Sale object and find a way to not hardcode its attires
 - Groupby
 - Charts
 - Modal ?
