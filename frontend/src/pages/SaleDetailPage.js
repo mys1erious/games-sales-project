@@ -1,17 +1,11 @@
 import React, {useEffect, useState} from "react";
 import { useNavigate, useParams} from "react-router-dom";
-import axios from "axios";
+import axiosInstance from "../axios";
 
 
 const EMAIL = 'admin@gmail.com'
 const PASSWORD = 'admin'
 
-const sampleJSON = {
-    "name": "Pluralsight",
-    "number": 1,
-    "address": "India",
-    "website": "https://www.pluralsight.com/"
-}
 const SaleDetailPage = () => {
 
     let navigate = useNavigate();
@@ -23,13 +17,7 @@ const SaleDetailPage = () => {
     }, [saleUUID]);
 
     let getSale = async() => {
-        let response = await axios.get(
-            `${process.env.REACT_APP_BASE_API_URL}/api/v1/sales/${saleUUID}/`,
-            {
-                headers: {
-                    'Authorization': 'Basic ' + btoa(`${EMAIL}:${PASSWORD}`)
-                },
-            });
+        let response = await axiosInstance.get(`/sales/${saleUUID}/`);
         let data = await response.data;
         setSale(data);
     }
