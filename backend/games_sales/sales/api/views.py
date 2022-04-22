@@ -3,7 +3,8 @@ from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework import status, generics
+from rest_framework import status
+from rest_framework import filters
 
 from ..models import Sale
 from .serializers import SaleSerializer
@@ -12,11 +13,17 @@ from .serializers import SaleSerializer
 class SaleListAPIView(APIView):
     permission_classes = (IsAuthenticated, )
 
+    # Rework ->
     def get(self, request, *args, **kwargs):
         name = request.query_params.get('name', None)
-        # sales = Sale.objects.filter(game__name__startswith=name)
+        yor = request.query_params.get('year_of_release', None)
 
         sales = Sale.objects.all()
+        if name:
+            sales = Sale.objects.filter(game__name__startswith=name)
+        if yor:
+            sales = sales.filter(game__year_of_release__exact=yor)
+
         serializer = SaleSerializer(sales, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
