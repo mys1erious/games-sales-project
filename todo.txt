@@ -1,6 +1,9 @@
 
-22.04.22:
-1. Finish in the evening with the Search form -> material-ui, rework for my project
+Today:
+Day: 
+1. Finish the Search form -> material-ui, rework for my project
+Evening:
+1. Work on Anki addon
 
 Overall:
 - Make a component to display Sale object and find a way to not hardcode its attires
