@@ -52,9 +52,9 @@ urlpatterns = [
         name='account_signup'
     ),
     path(
-        route='auth/sign-out/blacklist/',
+        route='auth/signout/blacklist/',
         view=account_views.BlackListTokenAPIView.as_view(),
-        name='refresh_token_blacklist'
+        name='blacklist'
     ),
     path(
         route='auth/token/',
