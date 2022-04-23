@@ -5,7 +5,7 @@ from accounts.models import Account
 class SignUpUserSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Account#settings.AUTH_USER_MODEL
+        model = Account
         fields = ['email', 'username', 'password']
         extra_kwargs = {'password': {'write_only': True}}
 
