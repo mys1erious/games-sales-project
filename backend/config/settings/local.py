@@ -29,4 +29,6 @@ CSRF_COOKIE_SECURE = False
 #     'https://localhost:3000',
 # ]
 
+ALLOWED_HOSTS = ['*']
+
 CORS_ORIGIN_ALLOW_ALL = True
