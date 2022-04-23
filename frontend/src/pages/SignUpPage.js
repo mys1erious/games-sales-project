@@ -39,7 +39,8 @@ const SignUpPage = () => {
             });
 
         // Add check for errors
-        navigate('/signin');
+        navigate('/signin/');
+        console.log(response.data);
     }
 
     return(

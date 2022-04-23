@@ -3,9 +3,6 @@ import { useNavigate, useParams} from "react-router-dom";
 import axiosInstance from "../axios";
 
 
-const EMAIL = 'admin@gmail.com'
-const PASSWORD = 'admin'
-
 const SaleDetailPage = () => {
 
     let navigate = useNavigate();

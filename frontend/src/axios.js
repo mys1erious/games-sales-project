@@ -8,12 +8,12 @@ const axiosInstance = axios.create({
     timeout: 5000,
     headers: {
         Authorization: localStorage.getItem('access_token')
-            ? 'JWT ' + localStorage.getItem('access_token')
+			? 'JWT ' + localStorage.getItem('access_token')
             : null,
         'Content-Type': 'application/json',
         accept: 'application/json',
-    }
-})
+    },
+});
 
 axiosInstance.interceptors.response.use(
 	(response) => {
@@ -84,5 +84,6 @@ axiosInstance.interceptors.response.use(
 		return Promise.reject(error);
 	}
 );
+
 
 export default axiosInstance;

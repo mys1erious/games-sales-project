@@ -1,13 +1,12 @@
-import {
-    BrowserRouter as Router,
-    Routes,
-    Route
-} from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import axiosInstance from "./axios";
 
 import './App.css';
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import PostLoadingComponent from './components/PostLoading';
 
 import HomePage from "./pages/HomePage";
 import SalesPage from "./pages/SalesPage";
@@ -19,44 +18,45 @@ import SignUpPage from "./pages/SignUpPage";
 import SIgnOutPage from "./pages/SIgnOutPage";
 
 
-
 function App() {
 
-    function getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].trim();
-                // Does this cookie string begin with the name we want?
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
-        }
-        return cookieValue;
-    }
-    const csrftoken = getCookie('csrftoken');
+    const PostLoadingSalesPage = PostLoadingComponent(SalesPage);
+    const [appState, setAppState] = useState({
+        loading: true,
+        sales: null,
+    });
+
+    useEffect(() => {
+        axiosInstance.get('/sales/').then((response) => {
+            setAppState({loading: false, sales: response.data});
+        });
+    }, [setAppState]);
 
     return (
         <Router>
-            <Header />
-            <div className="body-container">
-                <Routes>
-                    <Route path="/" exact element={<HomePage />} />
-                    <Route path="/sales/" exact element={<SalesPage />} />
-                    <Route path="/sales/:saleUUID/" element={<SaleDetailPage />} />
-                    <Route path="/reports/" exact element={<ReportsPage />} />
-                    <Route path="/profile/" exact element={<ProfilePage />} />
-                    <Route path="/signin/" exact element={<SignInPage />} />
-                    <Route path="/signup/" exact element={<SignUpPage />} />
-                    <Route path="/sign-out/" exact element={<SIgnOutPage />} />
-                </Routes>
-            </div>
-            <Footer />
+            <React.StrictMode>
+                <Header />
+                <div className="body-container">
+                    <Routes>
+                        <Route exact path="/" element={<HomePage />} />
+                        <Route path="/sales/" element={
+                            <PostLoadingSalesPage
+                                isLoading={appState.loading}
+                                sales={appState.sales}
+                            />
+                        } />
+                        <Route path="/sales/:saleUUID/" element={<SaleDetailPage />} />
+                        <Route path="/reports/" element={<ReportsPage />} />
+                        <Route path="/profile/" element={<ProfilePage />} />
+                        <Route path="/signin/" element={<SignInPage />} />
+                        <Route path="/signup/" element={<SignUpPage />} />
+                        <Route path="/sign-out/" element={<SIgnOutPage />} />
+                    </Routes>
+                </div>
+                <Footer />
+            </React.StrictMode>
         </Router>
     );
-}
+};
 
 export default App;

@@ -1,36 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "../css/SalesPage.css";
 import ListItem from "../components/ListItem";
-import axiosInstance from "../axios";
+
+import {Container} from "@material-ui/core";
 
 
-const SalesPage = () => {
+const SalesPage = (props) => {
 
-    let [sales, setSales] = useState([]);
-
-    useEffect(() => {
-        getSales();
-    }, []);
-
-    let getSales = async () => {
-        let response = await axiosInstance.get('/sales');
-        let data = await response.data;
-        setSales(data);
-    }
+    const { sales } = props;
 
     return(
         <React.Fragment>
-            <h1>SalesList</h1>
-            <div>
-                <ul>
-                    {sales.map((sale, index) => (
-                    <ListItem key={index} sale={sale} />
-                ))}
-                </ul>
-            </div>
+            <Container component="main" maxWidth="xl">
+                <h1>SalesList</h1>
+                <div>
+                    <ul>
+                        {sales.map((sale, index) => (
+                        <ListItem key={index} sale={sale} />
+                    ))}
+                    </ul>
+                </div>
+            </Container>
         </React.Fragment>
     );
-}
+};
 
 
 export default SalesPage;

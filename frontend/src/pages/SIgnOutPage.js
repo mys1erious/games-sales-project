@@ -6,17 +6,21 @@ import axiosInstance from "../axios";
 const SIgnOutPage = () => {
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const response = axiosInstance.post(
-            'auth/sign-out/blacklist/',
+    const handleSignOut = async() => {
+        axiosInstance.post(
+            'auth/signout/blacklist/',
             {
                 refresh_token: localStorage.getItem('refresh_token'),
             });
-            localStorage.removeItem('access_token');
-            localStorage.removeItem('refresh_token');
-            axiosInstance.defaults.headers['Authorization'] = null;
-            navigate('/signin')
-    })
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+        axiosInstance.defaults.headers['Authorization'] = null;
+        navigate('/signin/');
+    };
+
+    useEffect(() => {
+        handleSignOut();
+    });
 
     return(
         <React.Fragment>

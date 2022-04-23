@@ -26,21 +26,23 @@ const SignInPage = () => {
         });
     }
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
-        let response = await axiosInstance.post(
+        axiosInstance.post(
             'auth/token/',
             {
                 email: formData.email,
                 password: formData.password
-            });
-        localStorage.setItem('access_token', response.data.access);
-        localStorage.setItem('refresh_token', response.data.refresh);
-        axiosInstance.defaults.headers['Authorization'] =
-            'JWT ' + localStorage.getItem('access_token');
-        navigate('/profile');
-    }
+            }).then((response) => {
+                localStorage.setItem('access_token', response.data.access);
+                localStorage.setItem('refresh_token', response.data.refresh);
+                axiosInstance.defaults.headers['Authorization'] =
+                    'JWT ' + localStorage.getItem('access_token');
+                navigate('/profile/');
+                console.log(response.data);
+        });
+    };
 
     return(
         <React.Fragment>
