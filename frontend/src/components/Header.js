@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import '../css/Header.css';
 import {ReactComponent as Logo} from "../assets/logo.svg";
 import { useNavigate } from "react-router-dom";
-import SalesSearch from "./SalesSearch";
 import SearchBar from "material-ui-search-bar";
 
 
@@ -13,7 +12,7 @@ const Header = () => {
 
     const goSearch = (e) => {
         navigate({
-            pathname: '/sales/',
+            pathname: '/sales/search/',
             search: '?name=' + data.search,
         });
         window.location.reload();
