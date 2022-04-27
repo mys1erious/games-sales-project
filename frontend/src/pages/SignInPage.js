@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from '../axios';
 
@@ -7,9 +7,11 @@ import {
     Grid,
     Button
 } from "@material-ui/core";
+import getSales from '../App';
 
 
 const SignInPage = () => {
+
     const navigate = useNavigate();
     const initialFormData = Object.freeze({
         email: '',
@@ -17,6 +19,7 @@ const SignInPage = () => {
     });
 
     const [formData, updateFormData] = useState(initialFormData);
+
 
     const handleChange = (e) => {
         updateFormData({
@@ -39,8 +42,9 @@ const SignInPage = () => {
                 localStorage.setItem('refresh_token', response.data.refresh);
                 axiosInstance.defaults.headers['Authorization'] =
                     'JWT ' + localStorage.getItem('access_token');
+
+                window.location.reload();
                 navigate('/profile/');
-                console.log(response.data);
         });
     };
 
