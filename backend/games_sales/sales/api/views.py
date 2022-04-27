@@ -1,16 +1,18 @@
 from django.shortcuts import get_object_or_404
 
 from rest_framework.views import APIView
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from rest_framework import status
 
 from ..models import Sale
 from .serializers import SaleSerializer
 
+from core.permissions import IsAdminOrReadOnly
+
 
 class SaleListAPIView(APIView):
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAdminOrReadOnly, )
 
     # Rework ->
     def get(self, request, *args, **kwargs):
@@ -35,7 +37,7 @@ class SaleListAPIView(APIView):
 
 
 class SaleDetailAPIView(APIView):
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAdminOrReadOnly, )
 
     def get(self, request, uuid, format=None):
         sale = get_object_or_404(Sale, uuid=uuid)

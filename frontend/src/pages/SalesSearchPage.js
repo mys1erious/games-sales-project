@@ -10,6 +10,7 @@ const SalesSearch = () => {
     });
 
     useEffect(() => {
+        console.log(`sales/${window.location.search}`);
         axiosInstance.get(`sales/${window.location.search}`).then((response) => {
             console.log(`sales/${window.location.search}`);
             const allSales = response.data;
@@ -20,7 +21,7 @@ const SalesSearch = () => {
 
     return(
         <React.Fragment>
-
+            hello
 		</React.Fragment>
     )
 }

@@ -8,7 +8,7 @@ class SaleSerializer(serializers.ModelSerializer):
     game = GameSerializer(many=False)
 
     def create(self, validated_data):
-        sale_instance = self.instance.Meta.objects.create(**validated_data)
+        sale_instance = self.Meta.model.objects.create(**validated_data)
         return sale_instance
 
     class Meta:
