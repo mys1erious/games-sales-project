@@ -1,12 +1,10 @@
 
 Today:
-Day: 
-1. Finish the Search form -> material-ui, rework for my project
-Evening:
-1. Work on Anki addon
+- Make a component to display Sale object and find a way to not hardcode its attires
+- Work on Anki addon
+
 
 Overall:
-- Make a component to display Sale object and find a way to not hardcode its attires
 - Groupby
 - Charts
 - Modal ?
@@ -23,6 +21,13 @@ Overall:
 - Navbar?
 - Sale detail page
 --> After this add my own stuff that I want(mostly about data analysis and visualization)
+
+
+Bugs:
+1. Fix sales not updating on login
+2. Fix search to search by different params
+3. Rework check for logged in users(getItem(access_token) isnt safe, window.reload() isnt good too)
+4. 
 
 
 # Notes:
