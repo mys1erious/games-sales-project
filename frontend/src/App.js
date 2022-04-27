@@ -6,7 +6,6 @@ import './App.css';
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import PostLoadingComponent from './components/PostLoading';
 
 import HomePage from "./pages/HomePage";
 import SalesPage from "./pages/SalesPage";
@@ -17,20 +16,32 @@ import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
 import SIgnOutPage from "./pages/SIgnOutPage";
 
+import PostLoadingComponent from "./components/PostLoading";
+import SalesSearchPage from "./pages/SalesSearchPage";
+
 
 function App() {
-
     const PostLoadingSalesPage = PostLoadingComponent(SalesPage);
+
     const [appState, setAppState] = useState({
         loading: true,
         sales: null,
     });
 
     useEffect(() => {
-        axiosInstance.get('/sales/').then((response) => {
-            setAppState({loading: false, sales: response.data});
-        });
+        getSales();
     }, [setAppState]);
+
+    const getSales = () => {
+        axiosInstance.get('/sales/')
+            .then((response) => {
+                setAppState({loading: false, sales: response.data});})
+            .catch((error) => {
+                if (error.response) {
+                    console.log(error.response.status);
+                }
+            });
+    };
 
     return (
         <Router>
@@ -39,6 +50,7 @@ function App() {
                 <div className="body-container">
                     <Routes>
                         <Route exact path="/" element={<HomePage />} />
+
                         <Route path="/sales/" element={
                             <PostLoadingSalesPage
                                 isLoading={appState.loading}
@@ -46,7 +58,10 @@ function App() {
                             />
                         } />
                         <Route path="/sales/:saleUUID/" element={<SaleDetailPage />} />
+                        <Route path="/sales/search/" element={<SalesSearchPage />} />
+
                         <Route path="/reports/" element={<ReportsPage />} />
+
                         <Route path="/profile/" element={<ProfilePage />} />
                         <Route path="/signin/" element={<SignInPage />} />
                         <Route path="/signup/" element={<SignUpPage />} />
