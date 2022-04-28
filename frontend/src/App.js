@@ -4,20 +4,19 @@ import axiosInstance from "./axios";
 
 import './App.css';
 
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Header from "./components/core/Header";
+import Footer from "./components/core/Footer";
+import HomePage from "./components/core/HomePage";
+import ReportsPage from "./components/ReportsPage";
+import SalesPage from "./components/sales/SalesPage";
+import SaleDetailPage from "./components/sales/SaleDetailPage";
+import ProfilePage from "./components/user_handle/ProfilePage";
+import SignInPage from "./components/user_handle/SignInPage";
+import SignUpPage from "./components/user_handle/SignUpPage";
+import SIgnOutPage from "./components/user_handle/SIgnOutPage";
 
-import HomePage from "./pages/HomePage";
-import SalesPage from "./pages/SalesPage";
-import SaleDetailPage from "./pages/SaleDetailPage";
-import ReportsPage from "./pages/ReportsPage";
-import ProfilePage from "./pages/ProfilePage";
-import SignInPage from "./pages/SignInPage";
-import SignUpPage from "./pages/SignUpPage";
-import SIgnOutPage from "./pages/SIgnOutPage";
-
-import PostLoadingComponent from "./components/PostLoading";
-import SalesSearchPage from "./pages/SalesSearchPage";
+import PostLoadingComponent from "./components/core/PostLoading";
+import SalesSearchPage from "./components/sales/SalesSearchPage";
 
 
 function App() {
