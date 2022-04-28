@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import '../css/Header.css';
-import {ReactComponent as Logo} from "../assets/logo.svg";
+import './Header.css';
+import {ReactComponent as Logo} from "../../assets/logo.svg";
 import { useNavigate } from "react-router-dom";
 import SearchBar from "material-ui-search-bar";
 
