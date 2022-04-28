@@ -1,6 +1,8 @@
 
 Today:
-- Make a component to display Sale object and find a way to not hardcode its attires
+- Rework project layout for best practices
+- Make a component to display Sale object and find a way to not hardcode its attrs
+- Make HeaderItem component
 - Work on Anki addon
 
 
