@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from '../axios';
+import axiosInstance from "../../axios";
 
 import {
     TextField,
     Grid,
     Button
-} from "@material-ui/core";
-import getSales from '../App';
+} from '@mui/material';
 
 
 const SignInPage = () => {
@@ -87,7 +86,6 @@ const SignInPage = () => {
                     onClick={handleSubmit}>
                     Sign In
                 </Button>
-
             </form>
         </React.Fragment>
     )

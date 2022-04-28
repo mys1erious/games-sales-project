@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../axios";
+import axiosInstance from "../../axios";
 
 
 const SIgnOutPage = () => {

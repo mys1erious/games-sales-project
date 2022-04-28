@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from '../axios';
+import axiosInstance from "../../axios";
 
 import {
     TextField,
     Grid,
     Button
-} from "@material-ui/core";
+} from '@mui/material';
 
 
 const SignUpPage = () => {

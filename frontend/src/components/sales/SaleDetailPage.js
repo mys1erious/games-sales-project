@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { useNavigate, useParams} from "react-router-dom";
 import axiosInstance from "../axios";
-import {Button} from "@material-ui/core";
-
+import { Button } from '@mui/material';
 
 const SaleDetailPage = () => {
 

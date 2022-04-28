@@ -1,12 +1,10 @@
 import React, {useEffect, useState} from "react";
 import axiosInstance from "../axios";
-import {Container} from "@material-ui/core";
-import ListItem from "../components/ListItem";
+import {Container} from '@mui/material';
+import SalesList from "../components/SalesList";
 
 
 const SalesSearchPage = () => {
-    const search = 'name';
-
     const [appState, setAppState] = useState({
 		search: '',
 		sales: [],
@@ -31,16 +29,7 @@ const SalesSearchPage = () => {
 
     return(
         <React.Fragment>
-            <Container component="main" maxWidth="xl">
-                <h1>SalesList</h1>
-                <div>
-                    <ul>
-                        {appState.sales.map((sale, index) => (
-                        <ListItem key={index} sale={sale} />
-                    ))}
-                    </ul>
-                </div>
-            </Container>
+            <SalesList sales={appState.sales} />
         </React.Fragment>
     )
 }
