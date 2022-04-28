@@ -1,9 +1,9 @@
 import React from "react";
-import "../css/SalesPage.css";
+import "./SalesPage.css";
 
 import {Container} from '@mui/material';
 
-import SalesList from "../components/SalesList";
+import SalesList from "./SalesList";
 
 
 const SalesPage = (props) => {

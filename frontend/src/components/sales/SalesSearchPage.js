@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
-import axiosInstance from "../axios";
+import axiosInstance from "../../axios";
 import {Container} from '@mui/material';
-import SalesList from "../components/SalesList";
+import SalesList from "./SalesList";
 
 
 const SalesSearchPage = () => {
