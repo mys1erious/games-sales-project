@@ -12,7 +12,7 @@ const SaleDetailPage = () => {
     useEffect(() => {
         getSale();
     }, [saleUUID]);
-
+    
     let getSale = async() => {
         let response = await axiosInstance.get(`/sales/${saleUUID}/`);
         let data = response.data;
@@ -27,10 +27,24 @@ const SaleDetailPage = () => {
 
     let handleDelete = async() => {
         let response = await axiosInstance.delete(`/sales/${saleUUID}/`);
-        console.log(response);
     };
 
-    // try Recursive function to get data
+    // let saleFlatten = (item, dict={}) => {
+    //     console.log(item);
+    //     Object.keys(item).map((key, i) => (
+    //         (typeof(item[key]) === "object")
+    //             ? recPropsGetter(item[key], dict)
+    //             : dict[key] = item[key]
+    //     ));
+    //     return dict;
+    // };
+    //
+    // let saleDictBuilder = () => {
+    //     const dict = recPropsGetter(sale);
+    //     dict['uuid'] = saleUUID;
+    //     return dict;
+    // }
+
     return(
         <React.Fragment>
             <Button
@@ -59,7 +73,7 @@ const SaleDetailPage = () => {
             </Button>
             <h3>Sale info:</h3>
             <pre>
-                <code>{JSON.stringify(sale, null, 4)}</code>
+                {JSON.stringify(sale, null, 4)}
             </pre>
         </React.Fragment>
     )

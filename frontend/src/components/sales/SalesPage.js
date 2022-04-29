@@ -1,7 +1,6 @@
 import React from "react";
 import "./SalesPage.css";
 
-import {Container} from '@mui/material';
 
 import SalesList from "./SalesList";
 
