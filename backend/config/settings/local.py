@@ -19,16 +19,18 @@ DATABASES = {
 
 # INSTALLED_APPS += []
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'games_sales', 'media')
+
 
 SECURE_SSL_REDIRECT = False
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
 
 
-# CORS_ORIGIN_WHITELIST = [
-#     'https://localhost:3000',
-# ]
-
 ALLOWED_HOSTS = ['*']
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+
+
