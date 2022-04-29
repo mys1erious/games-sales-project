@@ -1,8 +1,8 @@
 
 Today:
-- Rework project layout for best practices
 - Make a component to display Sale object and find a way to not hardcode its attrs
 - Make HeaderItem component
+- Rework project layout for best practices
 - Work on Anki addon
 
 
@@ -25,12 +25,12 @@ Overall:
 --> After this add my own stuff that I want(mostly about data analysis and visualization)
 
 
-Bugs:
-1. Fix sales not updating on login
-2. Fix search to search by different params
-3. Rework check for logged in users(getItem(access_token) isnt safe, window.reload() isnt good too)
-4. 
+Bugs/Fixes:
+- Rework SaleDetailPage without hardcoding and make an adequate component to display sale info
+- Fix sales not updating on login
+- Fix search to search by different params
+- Rework check for logged in users(getItem(access_token) isnt safe, window.reload() isnt good too)
 
 
 # Notes:
-1. Get ideas from the kaggle code section
+1. Get ideas from the kaggle code section for data visualization
