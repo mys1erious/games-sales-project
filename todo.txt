@@ -1,36 +1,48 @@
+4.5:
+- tut 9 (Social logins)
+- Change 'uuid' to 'slug' in 'Sales'
 
-Today:
-- Make a component to display Sale object and find a way to not hardcode its attrs
+
+5.5:
 - Make HeaderItem component
-- Rework project layout for best practices
-- Work on Anki addon
+- Sale detail page
+- Finish Search functionality
 
 
-Overall:
+6.5:
 - Groupby
 - Charts
 - Modal ?
 - Results by field
 - Alerts
+
+
+7.5:
 - Report list
 - Detail page
-- Report list
 - Report detail
 - PDFs
 - Dropzone + favicon
+
+
+8.5:
 - My profile
 - Protecting views?
 - Navbar?
-- Sale detail page
---> After this add my own stuff that I want(mostly about data analysis and visualization)
+
+
+9.5:
+- Bugs/Fixes
+
+
+10.5:
+1. Get ideas from the kaggle code section for data visualization
+2. Implement some visualization
+
 
 
 Bugs/Fixes:
-- Rework SaleDetailPage without hardcoding and make an adequate component to display sale info
 - Fix sales not updating on login
 - Fix search to search by different params
 - Rework check for logged in users(getItem(access_token) isnt safe, window.reload() isnt good too)
 
-
-# Notes:
-1. Get ideas from the kaggle code section for data visualization
