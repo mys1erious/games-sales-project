@@ -3,6 +3,7 @@ import "./SalesPage.css";
 
 
 import SalesList from "./SalesList";
+import {Container} from "@mui/material";
 
 
 const SalesPage = (props) => {
@@ -11,7 +12,9 @@ const SalesPage = (props) => {
 
     return(
         <React.Fragment>
-            <SalesList sales={sales} />
+            <Container component="main" maxWidth="sm">
+                <SalesList sales={sales} />
+            </Container>
         </React.Fragment>
     )
 };

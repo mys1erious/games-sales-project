@@ -17,6 +17,7 @@ import SIgnOutPage from "./components/user_handle/SIgnOutPage";
 
 import PostLoadingComponent from "./components/core/PostLoading";
 import SalesSearchPage from "./components/sales/SalesSearchPage";
+import TestCreate from "./components/for_test_app/TestCreate";
 
 
 function App() {
@@ -65,6 +66,10 @@ function App() {
                         <Route path="/signin/" element={<SignInPage />} />
                         <Route path="/signup/" element={<SignUpPage />} />
                         <Route path="/sign-out/" element={<SIgnOutPage />} />
+
+
+                        {/*!!! Just for Testing !!!*/}
+                        <Route path="/test_app/create/" element={<TestCreate />} />
                     </Routes>
                 </div>
                 <Footer />
