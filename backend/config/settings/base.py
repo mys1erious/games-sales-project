@@ -33,6 +33,9 @@ ALLOWED_HOSTS = []
 
 # Application definition
 INSTALLED_APPS = [
+
+    'test_app',
+
     'core',
     'accounts',
     'profiles',
