@@ -9,6 +9,7 @@ from rest_framework.schemas import get_schema_view
 from accounts.api import views as account_views
 from games.api import views as game_views
 from sales.api import views as sale_views
+from test_app.api import views as test_views
 
 
 urlpatterns = [
@@ -67,6 +68,14 @@ urlpatterns = [
         name='token_refresh'
     ),
 
+
+    # For Testing
+    path(
+        route='test_image/create/',
+        view=test_views.TestCreateAPIView.as_view(),
+        name='test_create'
+    ),
+    # ----------
 
     path(
         route='schema/',
