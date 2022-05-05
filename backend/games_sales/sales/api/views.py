@@ -1,7 +1,6 @@
 from django.shortcuts import get_object_or_404
 
 from rest_framework.views import APIView
-
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -14,7 +13,7 @@ from core.permissions import IsAdminOrReadOnly
 class SaleListAPIView(APIView):
     permission_classes = (IsAdminOrReadOnly, )
 
-    # Rework ->
+    # Rework search ->
     def get(self, request, *args, **kwargs):
         name = request.query_params.get('name', None)
         yor = request.query_params.get('year_of_release', None)
