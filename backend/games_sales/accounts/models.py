@@ -3,13 +3,9 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 
 class AccountManager(BaseUserManager):
-    def create_user(self, username, email, password, **kwargs):
-        if password is None:
-            raise TypeError('Users must have a password.')
+    def create_user(self, email, username, password, **kwargs):
         if email is None:
             raise TypeError('Users must have an email.')
-        if username is None:
-            raise TypeError('Users must have a username.')
 
         user = self.model(username=username, email=self.normalize_email(email))
         user.set_password(password)
