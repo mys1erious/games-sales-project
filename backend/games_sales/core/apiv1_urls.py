@@ -1,9 +1,6 @@
 from django.urls import path, include
+
 from rest_framework.permissions import AllowAny
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView
-)
 from rest_framework.schemas import get_schema_view
 
 from accounts.api import views as account_views
@@ -46,28 +43,15 @@ urlpatterns = [
         name='sales'
     ),
 
-
+    # path(
+    #     route='auth/signup/',
+    #     view=account_views.UserSignUpAPIView.as_view(),
+    #     name='account_signup'
+    # ),
     path(
-        route='auth/signup/',
-        view=account_views.UserSignUpAPIView.as_view(),
-        name='account_signup'
+        route='auth/',
+        view=include('drf_social_oauth2.urls', namespace='drf')
     ),
-    path(
-        route='auth/signout/blacklist/',
-        view=account_views.BlackListTokenAPIView.as_view(),
-        name='blacklist'
-    ),
-    path(
-        route='auth/token/',
-        view=TokenObtainPairView.as_view(),
-        name='token_obtain_pair'
-    ),
-    path(
-        route='auth/token/refresh/',
-        view=TokenRefreshView.as_view(),
-        name='token_refresh'
-    ),
-
 
     # For Testing
     path(
