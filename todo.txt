@@ -1,43 +1,23 @@
-4.5:
-- tut 9 (Social logins)
-- Change 'uuid' to 'slug' in 'Sales'
-
-
 5.5:
+- Change 'uuid' to 'slug' in 'Sales'
 - Make HeaderItem component
 - Sale detail page
 - Finish Search functionality
-
-
-6.5:
 - Groupby
 - Charts
 - Modal ?
 - Results by field
 - Alerts
-
-
-7.5:
 - Report list
 - Detail page
 - Report detail
 - PDFs
 - Dropzone + favicon
-
-
-8.5:
 - My profile
 - Protecting views?
 - Navbar?
-
-
-9.5:
-- Bugs/Fixes
-
-
-10.5:
-1. Get ideas from the kaggle code section for data visualization
-2. Implement some visualization
+- Get ideas from the kaggle code section for data visualization
+- Implement some visualization
 
 
 
@@ -45,4 +25,3 @@ Bugs/Fixes:
 - Fix sales not updating on login
 - Fix search to search by different params
 - Rework check for logged in users(getItem(access_token) isnt safe, window.reload() isnt good too)
-
