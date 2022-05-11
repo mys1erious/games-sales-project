@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../../axios";
+import axios from "axios";
 
 import {
     TextField,
@@ -30,8 +30,8 @@ const SignUpPage = () => {
     const handleSubmit = async(e) => {
         e.preventDefault();
 
-        let response = await axiosInstance.post(
-            'auth/signup/',
+        let response = await axios.post(
+            process.env.REACT_APP_BASE_API_URL+'auth/signup/',
             {
                 email: formData.email,
                 username: formData.username,
@@ -101,4 +101,4 @@ const SignUpPage = () => {
 }
 
 
-export default SignUpPage
+export default SignUpPage;

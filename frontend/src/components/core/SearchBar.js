@@ -9,6 +9,7 @@ import TextField from "@mui/material/TextField";
 const SearchBar = ({setSearchQuery}) => {
 
     return(
+        <React.Fragment>
         <form>
             <TextField
               id="search-bar"
@@ -24,7 +25,8 @@ const SearchBar = ({setSearchQuery}) => {
             <IconButton type="submit" aria-label="search">
               <SearchIcon style={{ fill: "blue" }} />
             </IconButton>
-          </form>
+        </form>
+        </React.Fragment>
     );
 }
 

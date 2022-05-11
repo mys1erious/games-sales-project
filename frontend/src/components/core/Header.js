@@ -1,8 +1,21 @@
 import React, {useState} from "react";
-import './Header.css';
-import {ReactComponent as Logo} from "../../assets/logo.svg";
 import { useNavigate } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
+
+import "./Header.css";
+
+import {
+    AppBar, Button,
+    CssBaseline,
+    Icon,
+    Link,
+    Toolbar,
+    Typography
+} from "@mui/material";
+
+
 import SearchBar from "./SearchBar";
+import { ReactComponent as Logo } from "../../assets/logo.svg";
 
 
 const Header = () => {
@@ -18,35 +31,94 @@ const Header = () => {
         });
         window.location.reload();
     }
-
     return(
-        <div className="header">
-            <span className="header-panel">
-                <Logo className="logo" onClick={() => navigate('/')}/>
-                <span className="h_btn" onClick={() => navigate('/')}>Home</span>
-                <span className="h_btn" onClick={() => navigate('/sales/')}>Sales</span>
-                <span className="h_btn" onClick={() => navigate('/reports/')}>Reports</span>
-                <span className="h_btn" onClick={() => navigate('/profile/')}>Profile</span>
-                <SearchBar
-                    searchQuery={searchQuery} setSearchQuery={setSearchQuery}
-                    // onChange={(newVal) => setData({search: newVal})}
-                    onRequestSearch={() => goSearch(data.search)}
-                />
-            </span>
-            <span className="header-panel">
-                {
-                    localStorage.getItem('access_token') !== null
-                        ?
-                        <span className="h_btn" onClick={() => navigate('/sign-out/')}>Sign Out</span>
-                        :
-                        <React.Fragment>
-                            <span className="h_btn" onClick={() => navigate('/signin/')}>Sign In</span>
-                            <span className="h_btn" onClick={() => navigate('/signup/')}>Sign Up</span>
-                        </React.Fragment>
-                }
-
-            </span>
-        </div>
+        <React.Fragment>
+            <CssBaseline />
+            <AppBar
+                position="sticky"
+                color="default"
+                elevation={0}
+            >
+                <Toolbar >
+                    <Typography
+                        variant="h6"
+                        color="inherit"
+                        noWrap
+                    >
+                        <Button
+                            component={NavLink}
+                            to="/"
+                            color="inherit"
+                            variant="text"
+                            startIcon={<Logo className="logo" />}>
+                            Home
+                        </Button>
+                        <Button
+                            component={NavLink}
+                            to="/sales/"
+                            color="inherit"
+                            variant="text">
+                            Sales
+                        </Button>
+                        <Button
+                            component={NavLink}
+                            to="/reports/"
+                            color="inherit"
+                            variant="text">
+                            Reports
+                        </Button>
+                    </Typography>
+                    <SearchBar
+                        searchQuery={searchQuery} setSearchQuery={setSearchQuery}
+                        onChange={(newVal) => setData({search: newVal})}
+                        onRequestSearch={() => goSearch(data.search)}
+                    />
+                    <Typography
+                        variant="h6"
+                        color="inherit"
+                        noWrap
+                    >
+                        {
+                            localStorage.getItem('access_token') !== null
+                                ?
+                                <React.Fragment>
+                                    <Button
+                                        component={NavLink}
+                                        to="profile"
+                                        color="inherit"
+                                        variant="text">
+                                        Profile
+                                    </Button>
+                                    <Button
+                                        component={NavLink}
+                                        to="/sign-out/"
+                                        color="inherit"
+                                        variant="text">
+                                        Sign Out
+                                    </Button>
+                                </React.Fragment>
+                                :
+                                <React.Fragment>
+                                    <Button
+                                        component={NavLink}
+                                        to="/signin/"
+                                        color="inherit"
+                                        variant="text">
+                                        Sign In
+                                    </Button>
+                                    <Button
+                                        component={NavLink}
+                                        to="/signup/"
+                                        color="inherit"
+                                        variant="text">
+                                        Sign Up
+                                    </Button>
+                                </React.Fragment>
+                        }
+                    </Typography>
+                </Toolbar>
+            </AppBar>
+        </React.Fragment>
     )
 }
 
