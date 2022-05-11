@@ -1,8 +1,9 @@
 from rest_framework import serializers
+
 from accounts.models import Account
 
 
-class SignUpUserSerializer(serializers.ModelSerializer):
+class UserSignUpSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Account
@@ -11,7 +12,11 @@ class SignUpUserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         password = validated_data.pop('password', None)
-        instance = self.Meta.model(**validated_data)
+
+        # !!! Change to another one when done testing !!!
+        # instance = self.Meta.model(**validated_data, is_active=False)
+        instance = self.Meta.model(**validated_data, is_active=True, is_verified=True)
+
         if password is not None:
             instance.set_password(password)
         instance.save()
