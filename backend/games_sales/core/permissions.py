@@ -5,10 +5,12 @@ SAFE_METHODS = ['GET', 'HEAD', 'OPTIONS']
 
 class IsAdminOrIsAuthenticatedReadOnly(BasePermission):
     def has_permission(self, request, view):
-    # try:
-        if request.user and request.user.is_admin:
-            return True
-    # except AttributeError:
-        elif request.method in SAFE_METHODS and request.user and request.user.is_authenticated:
-            return True
+        if request.user:
+            user = request.user
+            if hasattr(user, 'is_anonymous') and user.is_anonymous:
+                return True
+            elif user.is_admin:
+                return True
+            elif request.method in SAFE_METHODS and user.is_authenticated:
+                return True
         return False

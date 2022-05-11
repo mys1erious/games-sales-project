@@ -43,14 +43,20 @@ urlpatterns = [
         name='sales'
     ),
 
-    # path(
-    #     route='auth/signup/',
-    #     view=account_views.UserSignUpAPIView.as_view(),
-    #     name='account_signup'
-    # ),
+    # Auth
     path(
         route='auth/',
         view=include('drf_social_oauth2.urls', namespace='drf')
+    ),
+    path(
+        route='auth/signup/',
+        view=account_views.UserSignUpAPIView.as_view(),
+        name='account_signup'
+    ),
+    path(
+        route='auth/confirm-email/',
+        view=account_views.UserConfirmEmailAPIView.as_view(),
+        name='account_confirm_email'
     ),
 
     # For Testing
