@@ -50,7 +50,7 @@ def sales_post_request(data):
         data=json.dumps(data, indent=2),
         auth=(EMAIL, PASSWORD),
         headers={
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         }
     )
     return r_post.json()
@@ -66,9 +66,9 @@ if __name__ == '__main__':
         data = json.load(f)
         samples = data['samples']
 
-        # for i in range(8):
-        #     r = sales_post_request(samples[i])
-        #     print(r)
+        for i in range(8):
+            r = sales_post_request(samples[i])
+            print(r)
 
         response = sales_get_request()
 
