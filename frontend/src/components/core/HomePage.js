@@ -1,6 +1,4 @@
 import React from "react";
-import "./HomePage.css";
-
 import SalesSearchForm from "../sales/SalesSearchForm";
 
 
