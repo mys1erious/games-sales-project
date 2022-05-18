@@ -13,17 +13,17 @@ const SalesSearchPage = () => {
         getSales();
     }, [setAppState])
 
-        const getSales = () => {
+    const getSales = () => {
+        console.log(`sales/${window.location.search}`)
         axiosInstance.get(`sales/${window.location.search}`)
             .then((response) => {
-                console.log(`sales/${window.location.search}`);
                 setAppState({sales: response.data});
             })
             .catch((error) => {
                 if (error.response) {
                     console.log(error.response.status);
                 }
-            });
+            })
     }
 
     return(
