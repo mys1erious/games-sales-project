@@ -14,7 +14,7 @@ class UserSignUpSerializer(serializers.ModelSerializer):
         password = validated_data.pop('password', None)
 
         # !!! Change to another one when done testing !!!
-        # instance = self.Meta.model(**validated_data, is_active=False)
+        # instance = self.Meta.model(**validated_data)
         instance = self.Meta.model(**validated_data, is_active=True, is_verified=True)
 
         if password is not None:

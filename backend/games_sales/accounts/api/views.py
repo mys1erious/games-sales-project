@@ -1,5 +1,6 @@
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.shortcuts import get_current_site
+from django.shortcuts import get_object_or_404
 from django.urls import reverse
 
 from rest_framework import status
@@ -18,13 +19,13 @@ class UserSignUpAPIView(APIView):
     permission_classes = (AllowAny, )
 
     def post(self, request, format=None):
-        user = request.data
-        serializer = UserSignUpSerializer(data=user)
+        data = {}
 
+        serializer = UserSignUpSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
 
-            user = Account.objects.get(email=serializer.data['email'])
+            user = get_object_or_404(Account, email=serializer.data['email'])
             token = default_token_generator.make_token(user)
 
             current_site = get_current_site(request).domain
@@ -33,13 +34,14 @@ class UserSignUpAPIView(APIView):
             email_body = f'Hi {user.username}, Use the link below to confirm your email\n' \
                          f'{abs_url}'
 
-            data = {
+            email_data = {
                 'email_body': email_body,
                 'email_subject': 'Confirm your email',
                 'to_email': user.email
             }
-            send_email(data)
+            send_email(email_data)
 
+            data['response'] = 'Confirmation link has been sent to your email'
             return Response(data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -48,20 +50,12 @@ class UserConfirmEmailAPIView(APIView):
     permission_classes = (AllowAny, )
 
     def get(self, request):
-        context = {}
+        data = {}
 
         token = request.GET.get('token')
         email = request.GET.get('email')
 
-        try:
-            user = Account.objects.get(email=email)
-        except(TypeError, ValueError, OverflowError):
-            user = None
-
-        if user is None:
-            context['response'] = 'Error'
-            context['error_message'] = 'User not found'
-            return Response(context, status=status.HTTP_400_BAD_REQUEST)
+        user = get_object_or_404(Account, email=email)
 
         if default_token_generator.check_token(user, token):
             if not user.is_verified:
@@ -69,12 +63,12 @@ class UserConfirmEmailAPIView(APIView):
                 user.is_verified = True
                 user.save()
 
-                context['response'] = 'Email has successfully been confirmed'
-                return Response(context, status=status.HTTP_200_OK)
+                data['response'] = 'Email has successfully been confirmed'
+                return Response(data, status=status.HTTP_200_OK)
 
-            context['response'] = 'Email has already been verified'
-            return Response(context, status=status.HTTP_200_OK)
+            data['response'] = 'Email has already been verified'
+            return Response(data, status=status.HTTP_200_OK)
 
-        context['response'] = 'Error'
-        context['error_message'] = 'Wrong token'
-        return Response(context, status=status.HTTP_400_BAD_REQUEST)
+        data['response'] = 'Error'
+        data['error_message'] = 'Token expired'
+        return Response(data, status=status.HTTP_400_BAD_REQUEST)
