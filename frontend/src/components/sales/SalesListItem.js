@@ -5,25 +5,20 @@ import './SalesListItem.css';
 import { ExpandLess, ExpandMore} from "@mui/icons-material";
 import {useNavigate} from "react-router-dom";
 
-
-const ListItemWidth = 460;
-
-
+const listItemWidth = 400;
 const ListItemSubText = styled(ListItemText) ({
-    width: "100%",
-    maxWidth: ListItemWidth,
+    width: listItemWidth,
     paddingLeft: "70px",
 });
 
 
-
-const SalesListItem = ( {sale} ) => {
+const SalesListItem = ( {currSale} ) => {
     const navigate = useNavigate();
 
     const [open, setOpen] = React.useState(false);
 
     const handleItemClick = () => {
-        navigate(`/sales/${sale.uuid}`);
+        navigate(`/sales/${currSale.uuid}`);
     };
 
     const handleExpandClick = () => {
@@ -33,7 +28,9 @@ const SalesListItem = ( {sale} ) => {
     return(
         <React.Fragment>
             <ListItem
-                sx={{width: '100%', maxWidth: ListItemWidth}}
+                sx={{
+                    width: listItemWidth,
+                    }}
                 component="nav"
                 divider={true}
                 disablePadding>
@@ -44,7 +41,7 @@ const SalesListItem = ( {sale} ) => {
                     <ListItemIcon>
                         <GameIcon className="icon" />
                     </ListItemIcon>
-                    <ListItemText primary={sale.game.name} />
+                    <ListItemText primary={currSale.game.name} />
                 </ListItemButton>
                 <ListItemButton
                     onClick={handleExpandClick}>
@@ -52,10 +49,11 @@ const SalesListItem = ( {sale} ) => {
                 </ListItemButton>
             </ListItem>
             <Collapse in={open} timeout="auto" unmountOnExit>
-                <ListItemSubText secondary={`Developer: ${sale.game.developer}`}/>
-                <ListItemSubText secondary={`Genre: ${sale.game.genre}`}/>
-                <ListItemSubText secondary={`Platform: ${sale.game.platform}`}/>
-                <ListItemSubText secondary={`Global Sales: ${sale.global_sales}`}/>
+                <ListItemSubText secondary={`Developer: ${currSale.game.developer}`}/>
+                <ListItemSubText secondary={`Genre: ${currSale.game.genre}`}/>
+                <ListItemSubText secondary={`Platform: ${currSale.game.platform}`}/>
+                <ListItemSubText secondary={`Year of Release: ${currSale.game.year_of_release}`}/>
+                <ListItemSubText secondary={`Global Sales: ${currSale.global_sales}`}/>
             </Collapse>
         </React.Fragment>
     );
