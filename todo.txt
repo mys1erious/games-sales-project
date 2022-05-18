@@ -1,6 +1,4 @@
 5.5:
-- Change 'uuid' to 'slug' in 'Sales'
-- Make HeaderItem component
 - Sale detail page
 - Finish Search functionality
 - Groupby
@@ -9,19 +7,17 @@
 - Results by field
 - Alerts
 - Report list
-- Detail page
-- Report detail
+- Report detail page
 - PDFs
 - Dropzone + favicon
 - My profile
 - Protecting views?
 - Navbar?
-- Get ideas from the kaggle code section for data visualization
+- Get ideas (possibly from the kaggle) for data visualization
 - Implement some visualization
 
 
 
 Bugs/Fixes:
 - Fix sales not updating on login
-- Fix search to search by different params
-- Rework check for logged in users(getItem(access_token) isnt safe, window.reload() isnt good too)
+- Fix long load when pressing HomePage
