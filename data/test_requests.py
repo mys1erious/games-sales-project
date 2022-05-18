@@ -66,7 +66,7 @@ if __name__ == '__main__':
         data = json.load(f)
         samples = data['samples']
 
-        for i in range(8):
+        for i in range(30):
             r = sales_post_request(samples[i])
             print(r)
 
