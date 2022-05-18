@@ -2,6 +2,8 @@ import os
 import sys
 from pathlib import Path
 from datetime import timedelta
+
+import django_filters.rest_framework
 from dotenv import load_dotenv
 
 from django.core.exceptions import ImproperlyConfigured
@@ -45,6 +47,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'corsheaders',
+    'django_filters',
     'oauth2_provider',
     'social_django',
     'drf_social_oauth2',
@@ -163,6 +166,9 @@ REST_FRAMEWORK = {
     'DEFAULT_THROTTLE_RATES': {
         'user': '10000/day'
     },
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend'
+    ]
 }
 
 AUTHENTICATION_BACKENDS = (
