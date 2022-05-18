@@ -1,6 +1,9 @@
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import get_object_or_404
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from django.db.models import Q
 
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -11,22 +14,40 @@ from .serializers import SaleSerializer
 from core.permissions import IsAdminOrIsAuthenticatedReadOnly
 
 
-class SaleListAPIView(APIView):
+class SaleListAPIView(APIView, LimitOffsetPagination):
     permission_classes = (IsAdminOrIsAuthenticatedReadOnly, )
+    page_size = 2
 
-    # Rework search ->
     def get(self, request, *args, **kwargs):
-        name = request.query_params.get('name', None)
-        yor = request.query_params.get('year_of_release', None)
-
         sales = Sale.objects.all()
-        if name:
-            sales = Sale.objects.filter(game__name__startswith=name)
-        if yor:
-            sales = sales.filter(game__year_of_release__exact=yor)
+        query_data = request.query_params
 
-        serializer = SaleSerializer(sales, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        if query_data: sales = self.search_filter(sales, query_data)
+        sales = sales.order_by('game')
+
+        paginator = Paginator(sales, self.page_size)
+
+        if 'page' in request.query_params:
+            page_number = request.query_params.get('page')
+        else:
+            page_number = 1
+
+        try:
+            paginator_page = paginator.page(page_number)
+        except (PageNotAnInteger, EmptyPage) as e:
+            return Response({'error': str(e)}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = SaleSerializer(
+            paginator_page,
+            many=True,
+            context={'request': request}
+        )
+
+        return Response({
+            'sales': serializer.data,
+            'num_pages': paginator.num_pages
+        },
+            status=status.HTTP_200_OK)
 
     def post(self, request, *args, **kwargs):
         serializer = SaleSerializer(data=request.data)
@@ -34,6 +55,25 @@ class SaleListAPIView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    # Possibly rework to use django-filter and generics view?
+    def search_filter(self, sales, query_data):
+        if 'value' in query_data:
+            sales = sales.filter(
+                Q(game__name__icontains=query_data['value']) |
+                Q(game__platform__icontains=query_data['value']) |
+                Q(game__publisher__icontains=query_data['value']) |
+                Q(game__developer__icontains=query_data['value'])
+            )
+        if 'yor_lt' in query_data:
+            sales = sales.filter(
+                Q(game__year_of_release__lte=query_data['yor_lt'])
+            )
+        if 'yor_gt' in query_data:
+            sales = sales.filter(
+                Q(game__year_of_release__gte=query_data['yor_gt'])
+            )
+        return sales
 
 
 class SaleDetailAPIView(APIView):
@@ -54,6 +94,11 @@ class SaleDetailAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, uuid, format=None):
+        data = {}
+
         sale = get_object_or_404(Sale, uuid=uuid)
+        sale_name = sale.game.name
         sale.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+
+        data['response'] = f'Sale ${sale_name} has successfully been deleted'
+        return Response(data, status=status.HTTP_204_NO_CONTENT)
