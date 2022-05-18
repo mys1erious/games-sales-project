@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
-import axiosInstance from "./axios";
 
 import './App.css';
 
@@ -14,52 +13,27 @@ import ProfilePage from "./components/user_handle/ProfilePage";
 import SignInPage from "./components/user_handle/SignInPage";
 import SignUpPage from "./components/user_handle/SignUpPage";
 import SIgnOutPage from "./components/user_handle/SIgnOutPage";
-
-import PostLoadingComponent from "./components/core/PostLoading";
 import SalesSearchPage from "./components/sales/SalesSearchPage";
+
 import TestCreate from "./components/for_test_app/TestCreate";
+import {SalesContext} from "./components/sales/SalesContext";
 
 
 function App() {
-    const PostLoadingSalesPage = PostLoadingComponent(SalesPage);
-
-    const [appState, setAppState] = useState({
-        loading: true,
-        sales: null,
-    });
-
-    useEffect(() => {
-        getSales();
-    }, [setAppState]);
-
-    const getSales = () => {
-        axiosInstance.get('/sales/')
-            .then((response) => {
-                setAppState({loading: false, sales: response.data});})
-            .catch((error) => {
-                if (error.response) {
-                    console.log(error.response.status);
-                }
-            });
-    };
+    const [sales, setSales] = useState(null);
 
     return (
         <Router>
             <React.StrictMode>
                 <Header />
                 <div className="body-container">
+                    <SalesContext.Provider value={{sales, setSales}}>
                     <Routes>
                         <Route exact path="/" element={<HomePage />} />
 
-                        <Route path="/sales/" element={
-                            <PostLoadingSalesPage
-                                isLoading={appState.loading}
-                                sales={appState.sales}
-                            />
-                        } />
+                        <Route path="/sales/" element={<SalesPage />} />
                         <Route path="/sales/:saleUUID/" element={<SaleDetailPage />} />
-                        <Route path="/sales/search/" element={<SalesSearchPage />} />
-
+                        <Route path='/sales/search/' element={<SalesSearchPage />} />
                         <Route path="/reports/" element={<ReportsPage />} />
 
                         <Route path="/profile/" element={<ProfilePage />} />
@@ -67,10 +41,10 @@ function App() {
                         <Route path="/signup/" element={<SignUpPage />} />
                         <Route path="/sign-out/" element={<SIgnOutPage />} />
 
-
-                        {/*!!! Just for Testing !!!*/}
+                        {/* Just for Testing */}
                         <Route path="/test_app/create/" element={<TestCreate />} />
                     </Routes>
+                    </SalesContext.Provider>
                 </div>
                 <Footer />
             </React.StrictMode>
