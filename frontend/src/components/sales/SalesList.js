@@ -1,20 +1,18 @@
-import React from "react";
+import React, {useContext} from "react";
 import SalesListItem from "./SalesListItem";
 import {Container} from "@mui/material";
+import {SalesContext} from "./SalesContext";
 
 
-const SalesList = ( props ) => {
-
-    const { sales } = props;
+const SalesList = ({sales}) => {
 
     return(
         <div>
-            <Container component="main" maxWidth="xl">
-                <h1>SalesList</h1>
+            <Container component="main">
                 <div>
                     <ul>
                         {sales.map((sale, index) => (
-                        <SalesListItem key={index} sale={sale} />
+                        <SalesListItem key={index} currSale={sale}/>
                     ))}
                     </ul>
                 </div>
