@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FacebookLogin from 'react-facebook-login';
-import FacebookLoginAxios from "./FacebookLoginAxios";
+import GoogleLogin from "react-google-login";
 
 import {
     TextField,
     Grid,
     Button
 } from '@mui/material';
+
 import axios from "axios";
+import FacebookLoginAxios from "./FacebookLoginAxios";
+import GoogleLoginAxios from "./GoogleLoginAxios";
 
 
 const SignInPage = () => {
@@ -65,6 +68,13 @@ const SignInPage = () => {
         //window.location.reload();
     };
 
+    const responseGoogle = (response) => {
+        GoogleLoginAxios(response);
+        //console.log(response);
+        //navigate('/profile/');
+        //window.location.reload();
+    };
+
     return(
         <React.Fragment>
             <h1>Sign In</h1>
@@ -106,8 +116,15 @@ const SignInPage = () => {
                 </Button>
                 <FacebookLogin
                     appId={process.env.REACT_APP_SOCIAL_AUTH_FACEBOOK_KEY}
+                    textButton="Continue with Facebook"
                     fields="name,email,picture"
                     callback={responseFacebook}
+                />
+                <GoogleLogin
+                    clientId={process.env.REACT_APP_SOCIAL_AUTH_GOOGLE_KEY}
+                    buttonText="Continue with Google"
+                    onSuccess={responseGoogle}
+                    onFailure={responseGoogle}
                 />
             </form>
         </React.Fragment>
