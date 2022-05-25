@@ -1,20 +1,43 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
-import FacebookLogin from 'react-facebook-login';
-import GoogleLogin from "react-google-login";
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+
+import GoogleLogin from 'react-google-login';
+import {gapi} from "gapi-script";
 
 import {
     TextField,
     Grid,
-    Button
+    Button, Container
 } from '@mui/material';
 
 import axios from "axios";
-import FacebookLoginAxios from "./FacebookLoginAxios";
-import GoogleLoginAxios from "./GoogleLoginAxios";
+import socialLoginAxios from "./SocialLoginAxios";
 
 
 const SignInPage = () => {
+
+    useEffect(() => {
+       const start = () => {
+           gapi.client.init({
+               client_id: process.env.REACT_APP_SOCIAL_AUTH_GOOGLE_KEY,
+               scope: ""
+           });
+       };
+        gapi.load("client:auth2", start);
+    });
+
+/*    useEffect(() => {
+        /!* global google *!/
+        google.accounts.id.initialize({
+            client_id: process.env.REACT_APP_SOCIAL_AUTH_GOOGLE_KEY,
+            callback: responseGoogle
+        });
+        google.accounts.id.renderButton(
+            document.getElementById("googleSignInDiv"),
+            { theme: "outline", size: "large"}
+        );
+    }, []);*/
 
     const axiosInstance = axios.create({
         baseURL: process.env.REACT_APP_BASE_API_URL,
@@ -62,18 +85,14 @@ const SignInPage = () => {
         });
     };
 
-    const responseFacebook = (response) => {
-        FacebookLoginAxios(response.accessToken);
+    const onSocialAuth = async(response, backendType) => {
+        await socialLoginAxios(response.accessToken, backendType);
         navigate('/profile/');
-        //window.location.reload();
-    };
+        window.location.reload();
+    }
 
-    const responseGoogle = (response) => {
-        GoogleLoginAxios(response);
-        //console.log(response);
-        //navigate('/profile/');
-        //window.location.reload();
-    };
+    const onFacebookAuth = async(response) => {await onSocialAuth(response, 'facebook')};
+    const onGoogleAuth = async(response) => {await onSocialAuth(response, 'google-oauth2')};
 
     return(
         <React.Fragment>
@@ -106,26 +125,51 @@ const SignInPage = () => {
                         />
                     </Grid>
                 </Grid>
-                <Button
-                    type='submit'
-                    fullWidth
-                    variant='contained'
-                    color='primary'
-                    onClick={handleSubmit}>
-                    Sign In
-                </Button>
-                <FacebookLogin
-                    appId={process.env.REACT_APP_SOCIAL_AUTH_FACEBOOK_KEY}
-                    textButton="Continue with Facebook"
-                    fields="name,email,picture"
-                    callback={responseFacebook}
-                />
-                <GoogleLogin
-                    clientId={process.env.REACT_APP_SOCIAL_AUTH_GOOGLE_KEY}
-                    buttonText="Continue with Google"
-                    onSuccess={responseGoogle}
-                    onFailure={responseGoogle}
-                />
+                <Container component="main">
+                    <Button
+                        type='submit'
+                        variant='outlined'
+                        color='primary'
+                        size='large'
+                        onClick={handleSubmit}>
+                        Sign In with Email
+                    </Button>
+                    <br />
+                    <FacebookLogin
+                        appId={process.env.REACT_APP_SOCIAL_AUTH_FACEBOOK_KEY}
+                        callback={onFacebookAuth}
+                        fields="name,email,picture"
+                        render={renderProps => (
+                            <Button
+                                type='submit'
+                                variant='outlined'
+                                color='primary'
+                                size='large'
+                                onClick={handleSubmit}>
+                                Sign In with Facebook
+                            </Button>
+                        )}
+                    />
+                    <br />
+                    <GoogleLogin
+                        clientId={process.env.REACT_APP_SOCIAL_AUTH_GOOGLE_KEY}
+                        onSuccess={onGoogleAuth}
+                        onFailure={onGoogleAuth}
+                        cookiePolicy='single_host_origin'
+                        render={renderProps => (
+                            <Button
+                                type='submit'
+                                variant='outlined'
+                                color='primary'
+                                size='large'
+                                onClick={handleSubmit}>
+                                Sign In with Google
+                            </Button>
+                        )}
+                    />
+                </Container>
+                {/*<div id="googleSignInDiv" />*/}
+
             </form>
         </React.Fragment>
     )
