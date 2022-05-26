@@ -1,4 +1,9 @@
-5.5:
+26.5:
+- Finish SignIn page (for now with old google implementation if theres no answer on utub comment)
+- Deal with login with the same email from different socials display an error message 
+
+
+Todo:
 - Sale detail page
 - Finish Search functionality
 - Groupby
