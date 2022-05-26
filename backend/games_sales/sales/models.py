@@ -4,7 +4,6 @@ from games.models import Game
 from core.models import TimeStampedModel
 
 
-# !!! Now scalable, rework for different types of products !!!
 class SaleManager(models.Manager):
     def create(self, **obj_data):
         game_data = obj_data.pop('game')
