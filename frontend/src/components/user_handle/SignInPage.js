@@ -8,11 +8,12 @@ import {gapi} from "gapi-script";
 import {
     TextField,
     Grid,
-    Button, Container
+    Container, Typography, Box
 } from '@mui/material';
 
 import axios from "axios";
 import socialLoginAxios from "./SocialLoginAxios";
+import SignInButton from "./SignInButton";
 
 
 const SignInPage = () => {
@@ -95,85 +96,85 @@ const SignInPage = () => {
     const onGoogleAuth = async(response) => {await onSocialAuth(response, 'google-oauth2')};
 
     return(
-        <React.Fragment>
-            <h1>Sign In</h1>
-            <form noValidate>
-                <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                        <TextField
-                            variant='outlined'
-                            required
-                            fullWidth
-                            id='email'
-                            label='Email Address'
-                            name='email'
-                            autoComplete='email'
-                            onChange={handleChange}
-                        />
+        <Box
+            sx={{ border: 1}}
+            maxWidth="50%"
+            alignSelf="center"
+        >
+        <Typography
+            align="center"
+            variant="h4">
+            Sign In
+        </Typography>
+        <Grid
+            container
+            spacing={4}
+        >
+            <Grid item xs={12}>
+            </Grid>
+            <Grid item xs={12}>
+                <form noValidate>
+                    <Grid item container spacing={1}>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant='outlined'
+                                required
+                                fullWidth
+                                id='email'
+                                label='Email Address'
+                                name='email'
+                                autoComplete='email'
+                                onChange={handleChange}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                type='password'
+                                variant='outlined'
+                                required
+                                fullWidth
+                                id='password'
+                                label='Password'
+                                name='password'
+                                autoComplete='password'
+                                onChange={handleChange}
+                            />
+                        </Grid>
                     </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            type='password'
-                            variant='outlined'
-                            required
-                            fullWidth
-                            id='password'
-                            label='Password'
-                            name='password'
-                            autoComplete='password'
-                            onChange={handleChange}
-                        />
-                    </Grid>
+                </form>
+            </Grid>
+            <Grid item container spacing={0}>
+                <Grid item xs={12}>
+                    <SignInButton
+                        buttonText="Sign In With Email"
+                        onClickFunc={handleSubmit}
+                    />
                 </Grid>
-                <Container component="main">
-                    <Button
-                        type='submit'
-                        variant='outlined'
-                        color='primary'
-                        size='large'
-                        onClick={handleSubmit}>
-                        Sign In with Email
-                    </Button>
-                    <br />
+                <Grid item xs={12}>
                     <FacebookLogin
                         appId={process.env.REACT_APP_SOCIAL_AUTH_FACEBOOK_KEY}
                         callback={onFacebookAuth}
                         fields="name,email,picture"
                         render={renderProps => (
-                            <Button
-                                type='submit'
-                                variant='outlined'
-                                color='primary'
-                                size='large'
-                                onClick={handleSubmit}>
-                                Sign In with Facebook
-                            </Button>
-                        )}
+                            <SignInButton buttonText="Sign In with Facebook" />)}
                     />
-                    <br />
+                </Grid>
+                <Grid item xs={12}>
                     <GoogleLogin
                         clientId={process.env.REACT_APP_SOCIAL_AUTH_GOOGLE_KEY}
                         onSuccess={onGoogleAuth}
                         onFailure={onGoogleAuth}
                         cookiePolicy='single_host_origin'
                         render={renderProps => (
-                            <Button
-                                type='submit'
-                                variant='outlined'
-                                color='primary'
-                                size='large'
-                                onClick={handleSubmit}>
-                                Sign In with Google
-                            </Button>
-                        )}
+                            <SignInButton buttonText="Sign In with Google" />)}
                     />
-                </Container>
-                {/*<div id="googleSignInDiv" />*/}
-
-            </form>
-        </React.Fragment>
-    )
-}
+                </Grid>
+            </Grid>
+        {/*    <div id="googleSignInDiv" />*/}
+        </Grid>
+        </Box>
+    );
+};
 
 
 export default SignInPage;
