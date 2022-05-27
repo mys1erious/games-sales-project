@@ -5,14 +5,14 @@ import './App.css';
 
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import HomePage from "./Pages/HomePage";
-import ReportsPage from "./Pages/ReportsPage";
+import HomePage from "./pages/HomePage";
+import ReportsPage from "./pages/ReportsPage";
 import SalesPage from "./components/Sales/SalesPage";
-import SaleDetailPage from "./Pages/SaleDetailPage";
-import ProfilePage from "./Pages/ProfilePage";
-import SignInPage from "./Pages/SignInPage";
-import SignUpPage from "./Pages/SignUpPage";
-import SIgnOutPage from "./Pages/SIgnOutPage";
+import SaleDetailPage from "./pages/SaleDetailPage";
+import ProfilePage from "./pages/ProfilePage";
+import SignInPage from "./pages/SignInPage";
+import SignUpPage from "./pages/SignUpPage";
+import SIgnOutPage from "./pages/SIgnOutPage";
 import SalesSearchPage from "./components/Sales/SalesSearchPage";
 
 import TestCreate from "./components/for_test_app/TestCreate";
