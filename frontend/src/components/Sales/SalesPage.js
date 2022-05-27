@@ -1,10 +1,10 @@
 import React, {useState, useEffect, useContext} from "react";
 import {useNavigate} from "react-router-dom";
 
-import {Box, Container, Grid, Pagination, Typography} from "@mui/material";
+import {Grid, Pagination, Typography} from "@mui/material";
 
 import DataLoadingItem from "../Core/DataLoadingItem";
-import axiosInstance from "../Core/AxiosBase";
+import axiosInstance from "../Core/AxiosInstance";
 import {SalesContext} from "./SalesContext";
 import SalesList from "./SalesList";
 
@@ -22,9 +22,9 @@ const SalesPage = () => {
 
     }, [currPage]);
 
-    useEffect(() => {
-
-    }, [])
+    // useEffect(() => {
+    //
+    // }, [])
 
     // Get numPages only on first load? cache in memo?
     const getSales = () => {
