@@ -44,7 +44,7 @@ class SaleListAPIView(APIView, LimitOffsetPagination):
         )
 
         return Response({
-            'Sales': serializer.data,
+            'sales': serializer.data,
             'num_pages': paginator.num_pages
         },
             status=status.HTTP_200_OK)

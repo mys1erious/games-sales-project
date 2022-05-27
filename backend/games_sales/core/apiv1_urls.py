@@ -32,13 +32,13 @@ urlpatterns = [
 
     # {% url 'api:Sales' %}
     path(
-        route='Sales/',
+        route='sales/',
         view=sale_views.SaleListAPIView.as_view(),
         name='Sales'
     ),
     # {% url 'api:Sales' sale.uuid %}
     path(
-        route='Sales/<uuid:uuid>/',
+        route='sales/<uuid:uuid>/',
         view=sale_views.SaleDetailAPIView.as_view(),
         name='Sales'
     ),
