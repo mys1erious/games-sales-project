@@ -38,11 +38,11 @@ INSTALLED_APPS = [
 
     'test_app',
 
-    'core',
+    'Core',
     'accounts',
     'profiles',
     'games',
-    'sales',
+    'Sales',
     'reports',
 
     'rest_framework',
