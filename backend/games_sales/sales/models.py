@@ -24,24 +24,24 @@ class Sale(TimeStampedModel):
         Game, on_delete=models.CASCADE
     )
     NA_sales = models.FloatField(
-        help_text='Game sales in North America (in millions of units)',
+        help_text='Game Sales in North America (in millions of units)',
         null=True, blank=True
     )
     EU_sales = models.FloatField(
-        help_text='Game sales in the European Union (in millions of units)',
+        help_text='Game Sales in the European Union (in millions of units)',
         null=True, blank=True
     )
     JP_sales = models.FloatField(
-        help_text='Game sales in Japan (in millions of units)',
+        help_text='Game Sales in Japan (in millions of units)',
         null=True, blank=True
     )
     other_sales = models.FloatField(
-        help_text='Game sales in the rest of the world, i.e. Africa, Asia'
+        help_text='Game Sales in the rest of the world, i.e. Africa, Asia'
                   'excluding Japan, Australia, Europe excluding the E.U. and',
         null=True, blank=True
     )
     global_sales = models.FloatField(
-        help_text='Total sales in the world (in millions of units)',
+        help_text='Total Sales in the world (in millions of units)',
         null=True, blank=True
     )
 

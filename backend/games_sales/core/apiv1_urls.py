@@ -30,17 +30,17 @@ urlpatterns = [
     ),
 
 
-    # {% url 'api:sales' %}
+    # {% url 'api:Sales' %}
     path(
-        route='sales/',
+        route='Sales/',
         view=sale_views.SaleListAPIView.as_view(),
-        name='sales'
+        name='Sales'
     ),
-    # {% url 'api:sales' sale.uuid %}
+    # {% url 'api:Sales' sale.uuid %}
     path(
-        route='sales/<uuid:uuid>/',
+        route='Sales/<uuid:uuid>/',
         view=sale_views.SaleDetailAPIView.as_view(),
-        name='sales'
+        name='Sales'
     ),
 
     # Auth
