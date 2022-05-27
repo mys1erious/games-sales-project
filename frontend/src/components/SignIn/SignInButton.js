@@ -8,8 +8,9 @@ const SignInButton = ({buttonText, onClickFunc=null}) => {
                 type='submit'
                 variant='outlined'
                 color='primary'
-                size='medium'
-                sx={{width: "50%"}}
+                size='large'
+                fullWidth
+                sx={{borderRadius: "20px"}}
                 onClick={onClickFunc}
             >
                 {buttonText}
