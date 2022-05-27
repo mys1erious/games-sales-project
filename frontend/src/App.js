@@ -3,20 +3,20 @@ import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
 import './App.css';
 
-import Header from "./components/core/Header";
-import Footer from "./components/core/Footer";
-import HomePage from "./components/core/HomePage";
-import ReportsPage from "./components/ReportsPage";
-import SalesPage from "./components/sales/SalesPage";
-import SaleDetailPage from "./components/sales/SaleDetailPage";
-import ProfilePage from "./components/user_handle/ProfilePage";
-import SignInPage from "./components/user_handle/SignInPage";
-import SignUpPage from "./components/user_handle/SignUpPage";
-import SIgnOutPage from "./components/user_handle/SIgnOutPage";
-import SalesSearchPage from "./components/sales/SalesSearchPage";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import HomePage from "./Pages/HomePage";
+import ReportsPage from "./Pages/ReportsPage";
+import SalesPage from "./components/Sales/SalesPage";
+import SaleDetailPage from "./Pages/SaleDetailPage";
+import ProfilePage from "./Pages/ProfilePage";
+import SignInPage from "./Pages/SignInPage";
+import SignUpPage from "./Pages/SignUpPage";
+import SIgnOutPage from "./Pages/SIgnOutPage";
+import SalesSearchPage from "./components/Sales/SalesSearchPage";
 
 import TestCreate from "./components/for_test_app/TestCreate";
-import {SalesContext} from "./components/sales/SalesContext";
+import {SalesContext} from "./components/Sales/SalesContext";
 
 
 function App() {

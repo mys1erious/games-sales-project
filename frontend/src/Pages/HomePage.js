@@ -1,5 +1,5 @@
 import React from "react";
-import SalesSearchForm from "../sales/SalesSearchForm";
+import SalesSearchForm from "../components/Sales/SalesSearchForm";
 
 
 const HomePage = () => {

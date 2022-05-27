@@ -12,8 +12,9 @@ import {
 } from '@mui/material';
 
 import axios from "axios";
-import socialLoginAxios from "./SocialLoginAxios";
-import SignInButton from "./SignInButton";
+import socialLoginAxios from "../components/SignIn/SocialLoginAxios";
+import SignInButton from "../components/SignIn/SignInButton";
+import SignInForm from "../components/SignIn/SignInForm";
 
 
 const SignInPage = () => {
@@ -26,7 +27,7 @@ const SignInPage = () => {
            });
        };
         gapi.load("client:auth2", start);
-    });
+    }, []);
 
 /*    useEffect(() => {
         /!* global google *!/
@@ -56,15 +57,6 @@ const SignInPage = () => {
     });
 
     const [formData, updateFormData] = useState(initialFormData);
-
-
-    const handleChange = (e) => {
-        updateFormData({
-            ...formData,
-            // Trimming whitespaces
-            [e.target.name]: e.target.value.trim(),
-        });
-    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -98,8 +90,6 @@ const SignInPage = () => {
     return(
         <Box
             sx={{ border: 1}}
-            maxWidth="50%"
-            alignSelf="center"
         >
         <Typography
             align="center"
@@ -109,39 +99,12 @@ const SignInPage = () => {
         <Grid
             container
             spacing={4}
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
         >
             <Grid item xs={12}>
-            </Grid>
-            <Grid item xs={12}>
-                <form noValidate>
-                    <Grid item container spacing={1}>
-                        <Grid item xs={12}>
-                            <TextField
-                                variant='outlined'
-                                required
-                                fullWidth
-                                id='email'
-                                label='Email Address'
-                                name='email'
-                                autoComplete='email'
-                                onChange={handleChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                type='password'
-                                variant='outlined'
-                                required
-                                fullWidth
-                                id='password'
-                                label='Password'
-                                name='password'
-                                autoComplete='password'
-                                onChange={handleChange}
-                            />
-                        </Grid>
-                    </Grid>
-                </form>
+                <SignInForm formData={formData} updateFormData={updateFormData}/>
             </Grid>
             <Grid item container spacing={0}>
                 <Grid item xs={12}>

@@ -4,8 +4,8 @@ import { useNavigate, useParams} from "react-router-dom";
 import {Button, IconButton, Collapse, Alert, Container} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
-import axiosInstance from "../../axios";
-import {SalesContext} from "./SalesContext";
+import axiosInstance from "../components/Core/AxiosBase";
+import {SalesContext} from "../components/Sales/SalesContext";
 
 
 const SaleDetailPage = () => {

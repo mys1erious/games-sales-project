@@ -4,7 +4,7 @@ import {InputLabel, MenuItem, TextField, Select } from '@mui/material';
 import {DatePicker} from "@mui/lab";
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import {LocalizationProvider} from "@mui/lab";
-import SearchBar from "../core/SearchBar";
+import SalesSearchBar from "./SalesSearchBar";
 import {useNavigate} from "react-router-dom";
 
 
@@ -36,7 +36,7 @@ const SalesSearchForm = () => {
     };
 
     const goSearch = () => {
-        let pathname = '/sales/search/';
+        let pathname = '/Sales/search/';
 
         let queryParams = {
             'value': '',
@@ -77,7 +77,7 @@ const SalesSearchForm = () => {
 
     return(
         <React.Fragment>
-        <SearchBar
+        <SalesSearchBar
             searchQuery={searchQuery} setSearchQuery={setSearchQuery}
             onRequestSearch={() => goSearch()}
         />

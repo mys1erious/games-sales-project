@@ -9,7 +9,7 @@ const SignInButton = ({buttonText, onClickFunc=null}) => {
                 variant='outlined'
                 color='primary'
                 size='medium'
-                fullWidth
+                sx={{width: "50%"}}
                 onClick={onClickFunc}
             >
                 {buttonText}

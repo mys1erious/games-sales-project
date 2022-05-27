@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import axiosInstance from "../../axios";
+import axiosInstance from "../Core/AxiosBase";
 import SalesList from "./SalesList";
 
 

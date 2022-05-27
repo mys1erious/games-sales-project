@@ -3,8 +3,8 @@ import {useNavigate} from "react-router-dom";
 
 import {Box, Container, Grid, Pagination, Typography} from "@mui/material";
 
-import DataLoadingItem from "../core/DataLoadingItem";
-import axiosInstance from "../../axios";
+import DataLoadingItem from "../Core/DataLoadingItem";
+import axiosInstance from "../Core/AxiosBase";
 import {SalesContext} from "./SalesContext";
 import SalesList from "./SalesList";
 

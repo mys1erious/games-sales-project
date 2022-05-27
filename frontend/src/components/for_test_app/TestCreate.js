@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Avatar, Button, Container, Grid, TextField, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
-import axiosInstance from "../../axios";
+import axiosInstance from "../Core/AxiosBase";
 
 
 const TestCreate = () => {

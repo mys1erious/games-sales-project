@@ -6,7 +6,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import TextField from "@mui/material/TextField";
 
 
-const SearchBar = ({setSearchQuery, onRequestSearch}) => {
+const SalesSearchBar = ({setSearchQuery, onRequestSearch}) => {
 
     return(
         <form>
@@ -33,4 +33,4 @@ const SearchBar = ({setSearchQuery, onRequestSearch}) => {
 }
 
 
-export default SearchBar;
+export default SalesSearchBar;
