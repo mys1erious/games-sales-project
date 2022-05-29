@@ -19,7 +19,7 @@ class UserSignUpAPIView(APIView):
     permission_classes = (AllowAny, )
 
     def post(self, request, format=None):
-        data = {}
+        data = {'message': ''}
 
         serializer = UserSignUpSerializer(data=request.data)
         if serializer.is_valid():
@@ -41,8 +41,10 @@ class UserSignUpAPIView(APIView):
             }
             send_email(email_data)
 
-            data['response'] = 'Confirmation link has been sent to your email'
+            data['message'] = 'Confirmation link has been sent to your email.'
             return Response(data, status=status.HTTP_201_CREATED)
+
+        # data['message'] = serializer.errors
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -50,7 +52,7 @@ class UserConfirmEmailAPIView(APIView):
     permission_classes = (AllowAny, )
 
     def get(self, request):
-        data = {}
+        data = {'message': ''}
 
         token = request.GET.get('token')
         email = request.GET.get('email')
@@ -63,12 +65,11 @@ class UserConfirmEmailAPIView(APIView):
                 user.is_verified = True
                 user.save()
 
-                data['response'] = 'Email has successfully been confirmed'
+                data['message'] = 'Email has successfully been confirmed.'
                 return Response(data, status=status.HTTP_200_OK)
 
-            data['response'] = 'Email has already been verified'
+            data['message'] = 'Email has already been verified.'
             return Response(data, status=status.HTTP_200_OK)
 
-        data['response'] = 'Error'
-        data['error_message'] = 'Token expired'
+        data['message'] = 'Token has expired.'
         return Response(data, status=status.HTTP_400_BAD_REQUEST)

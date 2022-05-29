@@ -5,12 +5,15 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 class AccountManager(BaseUserManager):
     def create_user(self, email, username, password, **kwargs):
         if email is None:
-            raise TypeError('Users must have an email.')
+            raise TypeError('You need to enter your email.')
+        if username is None:
+            raise TypeError('You need to enter your username.')
+        if password is None:
+            raise TypeError('You need to enter your password.')
 
         user = self.model(username=username, email=self.normalize_email(email))
         user.set_password(password)
         user.save(using=self._db)
-
         return user
 
     def create_superuser(self, username, email, password):
