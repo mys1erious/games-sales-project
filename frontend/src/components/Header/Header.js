@@ -5,7 +5,7 @@ import "./Header.css";
 
 import {
     AppBar, Button,
-    CssBaseline,
+    CssBaseline, FormControlLabel, Switch,
     Toolbar,
     Typography
 } from "@mui/material";
@@ -13,7 +13,12 @@ import {
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 
 
-const Header = () => {
+const Header = ({isDarkTheme, setIsDarkTheme}) => {
+
+    const changeTheme = () => {
+        setIsDarkTheme(currTheme => !currTheme)
+    };
+
     return(
         <React.Fragment>
             <CssBaseline />
@@ -94,6 +99,8 @@ const Header = () => {
                                     </Button>
                                 </React.Fragment>
                         }
+                        <FormControlLabel control={
+                            <Switch checked={isDarkTheme} onChange={changeTheme}/>} label="Dark mode" />
                     </Typography>
                 </Toolbar>
             </AppBar>

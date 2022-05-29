@@ -1,5 +1,6 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 import './App.css';
 
@@ -20,12 +21,27 @@ import {SalesContext} from "./components/Sales/SalesContext";
 
 
 function App() {
+
+    const darkTheme = createTheme({
+        palette: {
+            mode: 'dark'
+        }
+    });
+    const whiteTheme = createTheme({
+        palette: {
+            mode: 'light'
+        }
+    });
+
+    const [isDarkTheme, setIsDarkTheme] = useState(false);
     const [sales, setSales] = useState(null);
 
     return (
+
         <Router>
             <React.StrictMode>
-                <Header />
+                <ThemeProvider theme={isDarkTheme ? darkTheme : whiteTheme}>
+                <Header isDarkTheme={isDarkTheme} setIsDarkTheme={setIsDarkTheme}/>
                 <div className="body-container">
                     <SalesContext.Provider value={{sales, setSales}}>
                     <Routes>
@@ -47,6 +63,7 @@ function App() {
                     </SalesContext.Provider>
                 </div>
                 <Footer />
+                </ThemeProvider>
             </React.StrictMode>
         </Router>
     );
