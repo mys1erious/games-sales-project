@@ -1,15 +1,18 @@
-26.5:
-- Finish SignIn page (for now with old google implementation if theres no answer on utub comment)
-- Deal with login with the same email from different socials display an error message 
-
-
-Todo:
-- Sale detail page
+Backend:
+- Password double confirm on register
 - Finish Search functionality
 - Groupby
+- Data for Charts
+- Results by field
+- Reports
+- Get ideas (possibly from the kaggle) for data visualization
+
+
+
+Frontend:
+- Sale detail page
 - Charts
 - Modal ?
-- Results by field
 - Alerts
 - Report list
 - Report detail page
@@ -18,11 +21,9 @@ Todo:
 - My profile
 - Protecting views?
 - Navbar?
-- Get ideas (possibly from the kaggle) for data visualization
-- Implement some visualization
+- Implement visualization for data
 
 
 
 Bugs/Fixes:
-- Fix sales not updating on login
-- Fix long load when pressing HomePage
+- Fix long load when pressing HomePage and SwitchDarkTheme
