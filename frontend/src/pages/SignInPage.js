@@ -5,10 +5,11 @@ import {
     Grid,
     Typography,
 } from '@mui/material';
-import './SignInPage.css';
+import '../components/Auth/Core/AuthBase.css';
 
-import SignInForm from "../components/SignIn/SignInForm";
-import SocialButtonsContainer from "../components/SignIn/SocialButtonsContainer";
+import SignInForm from "../components/Auth/SignIn/SignInForm";
+import SocialButtonsContainer from "../components/Auth/Core/SocialButtonsContainer";
+import AuthGrid from "../components/Auth/Core/AuthGrid";
 
 
 const SignInPage = () => {
@@ -44,28 +45,33 @@ const SignInPage = () => {
 
     return(
         <React.Fragment>
-        <div className="login-container">
-            <Grid
-                container
-                rowSpacing={4}
-                direction="column"
-                alignItems="center"
-                justifyContent="center"
-
-                // For testing purposes
-                sx={{border: 1}}
-            >
-                <Grid item xs={12}>
-                    <Typography variant="h4">Sign In</Typography>
-                </Grid>
-                <Grid item xs={12}>
-                    <SignInForm formData={formData} updateFormData={updateFormData}/>
-                </Grid>
-                <Grid item xs={12}>
-                    <SocialButtonsContainer />
-                </Grid>
-            {/*    <div id="googleSignInDiv" />*/}
-            </Grid>
+        <div className="container-outer">
+            <div className="container-middle">
+                <div className="container-inner">
+                    <AuthGrid content={
+                        <>
+                        <Grid item xs={12}>
+                            <Typography variant="h4">Sign In</Typography>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <SignInForm formData={formData} updateFormData={updateFormData}/>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <SocialButtonsContainer />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Typography
+                                variant="caption"
+                            >
+                                Dont have an account?
+                                <a href="/signup/"> Sign Up.</a>
+                            </Typography>
+                        </Grid>
+                        </>
+                    }/>
+                    {/*    <div id="googleSignInDiv" />*/}
+                </div>
+            </div>
         </div>
         </React.Fragment>
     );
