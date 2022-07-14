@@ -12,7 +12,7 @@ import SocialButtonsContainer from "../components/Auth/Core/SocialButtonsContain
 import AuthGrid from "../components/Auth/Core/AuthGrid";
 
 
-const SignInPage = () => {
+const SignIn = () => {
     const initialFormData = Object.freeze({
         email: '',
         password: ''
@@ -78,4 +78,4 @@ const SignInPage = () => {
 };
 
 
-export default SignInPage;
+export default SignIn;

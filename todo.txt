@@ -26,4 +26,4 @@ Frontend:
 
 
 Bugs/Fixes:
-- Fix long load when pressing HomePage and SwitchDarkTheme
+- Fix long load when pressing Home and SwitchDarkTheme

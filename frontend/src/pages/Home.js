@@ -2,7 +2,7 @@ import React from "react";
 import SalesSearchForm from "../components/Sales/SalesSearchForm";
 
 
-const HomePage = () => {
+const Home = () => {
     return(
         <React.Fragment>
             Home Page
@@ -15,4 +15,4 @@ const HomePage = () => {
 }
 
 
-export default HomePage;
+export default Home;

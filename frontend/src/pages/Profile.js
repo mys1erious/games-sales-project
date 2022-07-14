@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const ProfilePage = () => {
+const Profile = () => {
     return(
         <React.Fragment>
             ProfilePage
@@ -10,4 +10,4 @@ const ProfilePage = () => {
 }
 
 
-export default ProfilePage;
+export default Profile;

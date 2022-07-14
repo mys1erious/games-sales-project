@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../components/Core/AxiosInstance";
 
 
-const SIgnOutPage = () => {
+const SignOut = () => {
     const navigate = useNavigate();
 
     const handleSignOut = () => {
@@ -35,4 +35,4 @@ const SIgnOutPage = () => {
 }
 
 
-export default SIgnOutPage;
+export default SignOut;

@@ -8,7 +8,7 @@ import axiosInstance from "../components/Core/AxiosInstance";
 import {SalesContext} from "../components/Sales/SalesContext";
 
 
-const SaleDetailPage = () => {
+const SaleDetail = () => {
     let navigate = useNavigate();
 
     const {sales, setSales} = useContext(SalesContext);
@@ -106,4 +106,4 @@ const SaleDetailPage = () => {
 }
 
 
-export default SaleDetailPage;
+export default SaleDetail;

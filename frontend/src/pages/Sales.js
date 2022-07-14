@@ -9,7 +9,7 @@ import {SalesContext} from "./SalesContext";
 import SalesList from "./SalesList";
 
 
-const SalesPage = () => {
+const Sales = () => {
     const navigate = useNavigate();
 
     const {sales, setSales} = useContext(SalesContext);
@@ -72,4 +72,4 @@ const SalesPage = () => {
 };
 
 
-export default SalesPage;
+export default Sales;

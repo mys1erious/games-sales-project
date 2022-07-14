@@ -6,14 +6,14 @@ import './App.css';
 
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import HomePage from "./pages/HomePage";
-import ReportsPage from "./pages/ReportsPage";
+import Home from "./pages/Home";
+import Reports from "./pages/Reports";
 import SalesPage from "./components/Sales/SalesPage";
-import SaleDetailPage from "./pages/SaleDetailPage";
-import ProfilePage from "./pages/ProfilePage";
-import SignInPage from "./pages/SignInPage";
-import SignUpPage from "./pages/SignUpPage";
-import SIgnOutPage from "./pages/SIgnOutPage";
+import SaleDetail from "./pages/SaleDetail";
+import Profile from "./pages/Profile";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import SignOut from "./pages/SignOut";
 import SalesSearchPage from "./components/Sales/SalesSearchPage";
 
 import TestCreate from "./components/for_test_app/TestCreate";
@@ -45,17 +45,17 @@ function App() {
                 <div className="body-container">
                     <SalesContext.Provider value={{sales, setSales}}>
                     <Routes>
-                        <Route exact path="/" element={<HomePage />} />
+                        <Route exact path="/" element={<Home />} />
 
                         <Route path="/sales/" element={<SalesPage />} />
-                        <Route path="/sales/:saleUUID/" element={<SaleDetailPage />} />
+                        <Route path="/sales/:saleUUID/" element={<SaleDetail />} />
                         <Route path='/sales/search/' element={<SalesSearchPage />} />
-                        <Route path="/reports/" element={<ReportsPage />} />
+                        <Route path="/reports/" element={<Reports />} />
 
-                        <Route path="/profile/" element={<ProfilePage />} />
-                        <Route path="/signin/" element={<SignInPage />} />
-                        <Route path="/signup/" element={<SignUpPage />} />
-                        <Route path="/sign-out/" element={<SIgnOutPage />} />
+                        <Route path="/profile/" element={<Profile />} />
+                        <Route path="/signin/" element={<SignIn />} />
+                        <Route path="/signup/" element={<SignUp />} />
+                        <Route path="/sign-out/" element={<SignOut />} />
 
                         {/* Just for Testing */}
                         <Route path="/test_app/create/" element={<TestCreate />} />

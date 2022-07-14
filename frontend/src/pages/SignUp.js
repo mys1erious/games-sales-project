@@ -13,7 +13,7 @@ import AuthGrid from "../components/Auth/Core/AuthGrid";
 import SignUpForm from "../components/Auth/SignUp/SignUpForm";
 
 
-const SignUpPage = () => {
+const SignUp = () => {
     const navigate = useNavigate();
 
     const initialFormData = Object.freeze({
@@ -56,4 +56,4 @@ const SignUpPage = () => {
 };
 
 
-export default SignUpPage;
+export default SignUp;

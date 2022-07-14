@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const ReportsPage = () => {
+const Reports = () => {
     return(
         <React.Fragment>
             ReportsPage
@@ -10,4 +10,4 @@ const ReportsPage = () => {
 }
 
 
-export default ReportsPage;
+export default Reports;
