@@ -1,3 +1,3 @@
 # Games_sales_project
 
-Will continue on this project after Apex Buff project
+Will continue working on this project after completion of apex-buff
