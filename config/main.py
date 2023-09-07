@@ -1,7 +1,7 @@
 import hupper
 from fastapi import FastAPI
-from runner import run
 
+from config.runner import run
 from test_app.routes import router as test_app_router
 
 
