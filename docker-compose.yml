@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  web:
+    restart: unless-stopped
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+      - redis
+    environment:
+      - DEBUG=true
+      - DJANGO_SETTINGS_MODULE=app.settings
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+    stop_signal: SIGINT
+
+  db:
+    restart: unless-stopped
+    image: postgres:latest
+    shm_size: 1g
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+
+  redis:
+    restart: unless-stopped
+    image: redis:5-buster  # use latest buster
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+
+volumes:
+  pgdata:
+  redisdata:
