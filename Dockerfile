@@ -23,7 +23,7 @@ COPY ./requirements.txt /requirements.txt
 RUN pip install --no-cache-dir -r /requirements.txt
 
 
-FROM base AS django
+FROM base AS fastapi
 
 COPY --from=base /python-venv /python-venv
 ENV PATH="/python-venv/bin:$PATH"
@@ -32,5 +32,3 @@ COPY . /code
 WORKDIR /code
 
 ENV PYTHONUNBUFFERED 1
-
-CMD ["django-admin"]

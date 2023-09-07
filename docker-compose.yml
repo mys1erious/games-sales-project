@@ -12,10 +12,7 @@ services:
     depends_on:
       - db
       - redis
-    environment:
-      - DEBUG=true
-      - DJANGO_SETTINGS_MODULE=app.settings
-    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+#    command: ["hupper", "-m", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
     stop_signal: SIGINT
 
   db:

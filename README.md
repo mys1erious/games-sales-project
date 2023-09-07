@@ -1,21 +1,9 @@
 ## Template setup to use with Pycharm Debugger
 
 - Run docker-compose up --build
-- Create db via pgadmin
 - Add new interpeter -> On Docker Compose:
   - Service: web 
-  - Envs: DJANGO_SETTINGS_MODULE=app.settings;PYTHONUNBUFFERED=1 
+  - Envs: PYTHONUNBUFFERED=1 
   - Rename interpreter 
 - Select Edit Debug Configuration 
-  - Host: 0.0.0.0 
-  - envs: DJANGO_SETTINGS_MODULE=app.settings;DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock;PYTHONUNBUFFERED=1
-    - btw this DOCKER_HOST might only be applied to windows? 
-  - Interpreter: Choose just created Docker Compose remote interpreter 
-  - Working dir: project root 
-  - Path mappings: DJANGO_SETTINGS_MODULE=app.settings;DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock 
-  - Command and options: up
-- If Django Enable error:
-  - Settings -> Lang & Frameworks -> Django 
-  - Enable Django Support 
-  - Set Django project root, Settings, Manage script 
-  - Folder pattern to track files: migrations
+  - Open config/main.py file and choose Current File and run debugger
