@@ -9,7 +9,7 @@
 - Select Edit Debug Configuration 
   - Host: 0.0.0.0 
   - envs: DJANGO_SETTINGS_MODULE=app.settings;DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock;PYTHONUNBUFFERED=1
-    - btw this DOCKER_HOST might only be applied to windows? 
+    - ATTENCION BLYAT: unix://$XDG_RUNTIME_DIR/docker.sock maps to 'sudo docker' on linux, so it might not be shown in Docker Desktop if you dont run it with sudo
   - Interpreter: Choose just created Docker Compose remote interpreter 
   - Working dir: project root 
   - Path mappings: DJANGO_SETTINGS_MODULE=app.settings;DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock 
