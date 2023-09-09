@@ -7,3 +7,5 @@
   - Rename interpreter 
 - Select Edit Debug Configuration 
   - Open config/main.py file and choose Current File and run debugger
+
+- ATTENCION BLYAT: unix://$XDG_RUNTIME_DIR/docker.sock maps to 'sudo docker' on linux, so it might not be shown in Docker Desktop if you dont run it with sudo
